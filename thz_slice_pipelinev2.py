@@ -45,6 +45,9 @@ LR        = 1e-3
 LABELS_DIR  = Path("labels_v2")
 RESULTS_DIR = Path("results_v2")
 
+# Samples confirmed to have NO voids — always included in training with all-zero masks
+NO_VOID_SAMPLES = {"14"}
+
 PHYSICAL_NAMES = {
     "1":    "1",
     "2":    "2",
@@ -654,19 +657,31 @@ if __name__ == "__main__":
 
         all_slices, all_masks = [], []
         for sd in samples_data:
-            mask_path = LABELS_DIR / f"{sd['name']}_slice_masks.npy"
-            if not mask_path.exists():
-                print(f"  {sd['name']}: no mask file, skipping")
+            name = sd["name"]
+            n_s  = sd["slices"].shape[0]
+
+            # No-void samples: force all-zero masks, always include as negatives
+            if name in NO_VOID_SAMPLES:
+                masks = np.zeros((n_s, 100, 100), dtype=np.uint8)
+                sd["masks"] = masks
+                all_slices.append(sd["slices"])
+                all_masks.append(masks)
+                print(f"  {name}: no-void sample — included as {n_s} negative slices")
                 continue
-            masks  = np.load(mask_path)
-            n_lbl  = (masks.sum(axis=(1, 2)) > 0).sum()
+
+            mask_path = LABELS_DIR / f"{name}_slice_masks.npy"
+            if not mask_path.exists():
+                print(f"  {name}: no mask file, skipping")
+                continue
+            masks = np.load(mask_path)
+            n_lbl = (masks.sum(axis=(1, 2)) > 0).sum()
             if n_lbl == 0:
-                print(f"  {sd['name']}: no labeled slices, skipping")
+                print(f"  {name}: no labeled slices, skipping")
                 continue
             sd["masks"] = masks
             all_slices.append(sd["slices"])
             all_masks.append(masks)
-            print(f"  {sd['name']}: {n_lbl}/{N_SLICES} slices labeled")
+            print(f"  {name}: {n_lbl}/{n_s} slices labeled")
 
         if not all_slices:
             print("No labeled data found. Run 'label' mode first.")
