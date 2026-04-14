@@ -73,8 +73,46 @@ SPACING_OVERRIDES = {
 
 # ── data loading ──────────────────────────────────────────────────────────────
 
+SLICES_DIR = Path("slices_v2")
+
+
 def load_roi_samples(rois: dict) -> list:
-    """Load tprj, process to depth slices, crop each sample to its 20×20 mm ROI."""
+    """Load cropped depth slices for each sample.
+
+    Fast path: if slices_v2/{name}_slices.npy exists (pre-exported), load that.
+    Slow path: load from tprj, process, and crop (requires raw data on disk).
+    """
+    # Check whether pre-exported slices are available
+    if SLICES_DIR.exists() and any(SLICES_DIR.glob("*_slices.npy")):
+        return _load_from_npy(rois)
+    else:
+        return _load_from_tprj(rois)
+
+
+def _load_from_npy(rois: dict) -> list:
+    """Load pre-exported slices from slices_v2/*.npy."""
+    print(f"Loading pre-exported slices from {SLICES_DIR}/")
+    samples_data = []
+    for phys in sorted(rois.keys()):
+        slices_path = SLICES_DIR / f"{phys}_slices.npy"
+        depths_path = SLICES_DIR / f"{phys}_depths.npy"
+        if not slices_path.exists():
+            print(f"  –  {phys}: {slices_path} not found, skipping")
+            continue
+        slices = np.load(slices_path)
+        depths = np.load(depths_path) if depths_path.exists() else np.linspace(0, 5, slices.shape[0])
+        samples_data.append({
+            "name":          phys,
+            "slices":        slices,
+            "depths_mm":     depths,
+            "depth_profile": np.zeros(slices.shape[0], dtype=np.float32),
+        })
+        print(f"  ✓  {phys}  {slices.shape}  depth 0–{depths[-1]:.2f} mm")
+    return samples_data
+
+
+def _load_from_tprj(rois: dict) -> list:
+    """Load from raw tprj, process to slices, and crop to ROI."""
     print("Loading volumes from tprj…")
     raw_samples = load_all_volumes([TPRJ])
 
@@ -91,18 +129,14 @@ def load_roi_samples(rois: dict) -> list:
             print(f"  –  {phys}: no ROI in {ROI_JSON}, skipping")
             continue
 
-        # Apply spacing override before processing
         if phys in SPACING_OVERRIDES:
             s = dict(s)
             s.update(SPACING_OVERRIDES[phys])
 
         try:
             slices, depths, _, profile = process_to_slices(s, n_slices=N_SLICES)
-
-            # Crop to ROI
             roi = rois[phys]
-            r0, r1, c0, c1 = roi["r0"], roi["r1"], roi["c0"], roi["c1"]
-            slices = slices[:, r0:r1, c0:c1].copy()   # (N_SLICES, 100, 100)
+            slices = slices[:, roi["r0"]:roi["r1"], roi["c0"]:roi["c1"]].copy()
 
             samples_data.append({
                 "name":          phys,
