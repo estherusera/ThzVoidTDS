@@ -1,0 +1,22 @@
+# Raw THz data (too large for GitHub)
+*.tprj
+
+# Processed volumes
+output_atlanta_*/
+output_esther_*/
+output_label_*/
+output_manual_*/
+
+# Virtual environment
+thesis_env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Mendeley cache
+mendeley_cfrp/
+
+# macOS
+.DS_Store

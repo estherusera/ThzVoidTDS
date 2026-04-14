@@ -1,0 +1,24 @@
+{
+  "split": "20 train / 6 test (random 80/20, seed=42)",
+  "train_composition": {
+    "3D_print_Esther/Sample_1": 11,
+    "3D_print_Esther/Sample_2": 5,
+    "3D_print_Esther/Sample_3_1": 4
+  },
+  "test_composition": {
+    "3D_print_Esther/Sample_2": 3,
+    "3D_print_Esther/Sample_1": 3
+  },
+  "Exp1: Baseline": {
+    "dice": 0.6493628025054932,
+    "iou": 0.5024382472038269
+  },
+  "Exp2: PT+FT (full)": {
+    "dice": 0.6819369792938232,
+    "iou": 0.5300285816192627
+  },
+  "Exp3: PT+FT (frozen)": {
+    "dice": 0.6308379173278809,
+    "iou": 0.4808894991874695
+  }
+}
