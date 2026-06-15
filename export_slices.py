@@ -10,7 +10,9 @@ Output per sample:
   slices_v2/{name}_depths.npy   — float32 (N_SLICES,) depth in mm
 
 Run:
-    thesis_env/bin/python export_slices.py
+    thesis_env/bin/python export_slices.py                       # atlanta1, 50 slices
+    thesis_env/bin/python export_slices.py atlanta2              # atlanta2, 50 slices
+    thesis_env/bin/python export_slices.py atlanta2 500          # atlanta2, 500 slices
 """
 
 import sys, json
@@ -20,24 +22,52 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from thz_slice_pipeline import load_all_volumes, process_to_slices
 
-TPRJ     = "3D_print_esther_atlanta.tprj"
-ROI_JSON = "sample_rois.json"
-N_SLICES = 50
-OUT_DIR  = Path("slices_v2")
-
-PHYSICAL_NAMES = {
-    "1":    "1",  "2":  "2",  "3":  "3",  "4":   "4",
-    "5":    "5",  "5b": "5b", "6-9":"6",  "7":   "7",
-    "8":    "8",  "9-6.":"9", "10": "10", "11":  "11",
-    "12":   "12", "13": "13", "14": "14", "15":  "15",
+DATASETS = {
+    "atlanta1": dict(
+        tprj="3D_print_esther_atlanta.tprj",
+        roi_json="sample_rois.json",
+        out_dir="slices_v2",
+        physical_names={
+            "1":   "1",  "2":  "2",  "3":  "3",  "4":   "4",
+            "5":   "5",  "5b": "5b", "6-9":"6",  "7":   "7",
+            "8":   "8",  "9-6.":"9", "10": "10", "11":  "11",
+            "12":  "12", "13": "13", "14": "14", "15":  "15",
+        },
+        spacing_overrides={"1": dict(dx_mm=0.2, dy_mm=0.5)},
+    ),
+    "atlanta2": dict(
+        tprj="3D_print_esther_atlanta2.tprj",
+        roi_json="sample_rois_atlanta2.json",
+        out_dir="slices_v2_atlanta2",
+        physical_names={**{str(i): str(i) for i in range(1, 16)},
+                        "sample 6": "6"},
+        spacing_overrides={},
+    ),
 }
 
-SPACING_OVERRIDES = {
-    "1": dict(dx_mm=0.2, dy_mm=0.5),
-}
+DATASET  = sys.argv[1] if len(sys.argv) > 1 and sys.argv[1] in DATASETS else "atlanta1"
+N_SLICES = int(sys.argv[2]) if len(sys.argv) > 2 else 50
+_CFG     = DATASETS[DATASET]
+
+TPRJ              = _CFG["tprj"]
+ROI_JSON          = _CFG["roi_json"]
+# When using a non-default slice count, suffix the output directory
+OUT_DIR           = Path(_CFG["out_dir"] + (f"_{N_SLICES}" if N_SLICES != 50 else ""))
+PHYSICAL_NAMES    = _CFG["physical_names"]
+SPACING_OVERRIDES = _CFG["spacing_overrides"]
 
 
 def main():
+    print(f"\n=== export_slices — dataset: {DATASET} ===")
+    print(f"    tprj:  {TPRJ}")
+    print(f"    rois:  {ROI_JSON}")
+    print(f"    out:   {OUT_DIR}/\n")
+
+    if not Path(ROI_JSON).exists():
+        print(f"ERROR: {ROI_JSON} not found.")
+        print(f"  Run: thesis_env/bin/python roi_labeler.py {DATASET}")
+        sys.exit(1)
+
     with open(ROI_JSON) as fh:
         rois = json.load(fh)
 

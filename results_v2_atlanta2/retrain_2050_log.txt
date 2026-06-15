@@ -1,0 +1,48 @@
+
+=== retrain_pseudo (atlanta2, 2050-slice + weighted manual) ===
+
+  slices dir:    slices_v2_atlanta2_2050/
+  pseudo dir:    labels_v2_atlanta2_pseudo_2050/
+  manual weight: 5.0
+  pseudo weight: 1.0
+  offsets:       [-40, -20, 0, 20, 40]
+  epochs:        30
+  batch:         16
+
+  samples: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15']
+
+Building combined label volumes:
+    1: pseudo (2050) + 50 manual @ weight 5.0  (16 of manual are positive)
+    2: pseudo (2050) + 50 manual @ weight 5.0  (4 of manual are positive)
+    3: pseudo (2050) + 50 manual @ weight 5.0  (7 of manual are positive)
+    4: pseudo (2050) + 50 manual @ weight 5.0  (31 of manual are positive)
+    5: pseudo (2050) + 50 manual @ weight 5.0  (11 of manual are positive)
+    6: pseudo (2050) + 50 manual @ weight 5.0  (6 of manual are positive)
+    7: pseudo (2050) + 50 manual @ weight 5.0  (8 of manual are positive)
+    8: pseudo (2050) + 50 manual @ weight 5.0  (17 of manual are positive)
+    9: pseudo (2050) + 50 manual @ weight 5.0  (15 of manual are positive)
+    10: pseudo (2050) + 50 manual @ weight 5.0  (0 of manual are positive)
+    11: pseudo (2050) + 50 manual @ weight 5.0  (15 of manual are positive)
+    12: pseudo (2050) + 50 manual @ weight 5.0  (14 of manual are positive)
+    13: pseudo (2050) + 50 manual @ weight 5.0  (17 of manual are positive)
+    14: no-void → all-zero target, weight 1.0
+    15: pseudo (2050) + 50 manual @ weight 5.0  (15 of manual are positive)
+  Dataset: 30750 slice-mask-weight triples
+    manual-label slices:   700  (weight 5.0)
+    pseudo-label slices:   28000  (weight 1.0)
+    no-void zero-masks:    2050  (weight 1.0)
+
+Training: 30750 items, 30 epochs, batch=16, 1,928,993 params, device=mps
+──────────────────────────────────────────────────────────────────────
+  Epoch   1/30 | Loss 0.2433 | Dice 0.8325 | IoU 0.8127 | elapsed 1.9 min
+  Epoch   5/30 | Loss 0.0502 | Dice 0.9436 | IoU 0.9272 | elapsed 9.8 min
+  Epoch  10/30 | Loss 0.0377 | Dice 0.9579 | IoU 0.9438 | elapsed 19.4 min
+  Epoch  15/30 | Loss 0.0341 | Dice 0.9630 | IoU 0.9500 | elapsed 28.9 min
+  Epoch  20/30 | Loss 0.0297 | Dice 0.9681 | IoU 0.9564 | elapsed 38.5 min
+  Epoch  25/30 | Loss 0.0249 | Dice 0.9757 | IoU 0.9651 | elapsed 48.0 min
+  Epoch  30/30 | Loss 0.0231 | Dice 0.9775 | IoU 0.9674 | elapsed 57.5 min
+
+Saved: results_v2_atlanta2/unet_pseudo_2050.pt
+Saved: results_v2_atlanta2/training_curves_pseudo_2050.png
+
+Final — Loss 0.0231 | Dice 0.9775 | IoU 0.9674

@@ -1,0 +1,157 @@
+{
+  "sample": "14",
+  "stl": "AllSamples/stl/NoVoid_CV15.stl",
+  "best_threshold": 0.3,
+  "best_symmetry": 0,
+  "n_gt": 0,
+  "n_pred": 0,
+  "precision": 0.0,
+  "recall": 0.0,
+  "f1": 0.0,
+  "mean_centroid_distance_mm": null,
+  "gt_voids": [],
+  "pred_voids": [],
+  "matches": [],
+  "sweep": [
+    {
+      "thr": 0.3,
+      "n_blobs": 0,
+      "matches": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sym": -1,
+      "mean_dist_mm": null
+    },
+    {
+      "thr": 0.35,
+      "n_blobs": 0,
+      "matches": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sym": -1,
+      "mean_dist_mm": null
+    },
+    {
+      "thr": 0.39999999999999997,
+      "n_blobs": 0,
+      "matches": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sym": -1,
+      "mean_dist_mm": null
+    },
+    {
+      "thr": 0.44999999999999996,
+      "n_blobs": 0,
+      "matches": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sym": -1,
+      "mean_dist_mm": null
+    },
+    {
+      "thr": 0.49999999999999994,
+      "n_blobs": 0,
+      "matches": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sym": -1,
+      "mean_dist_mm": null
+    },
+    {
+      "thr": 0.5499999999999999,
+      "n_blobs": 0,
+      "matches": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sym": -1,
+      "mean_dist_mm": null
+    },
+    {
+      "thr": 0.5999999999999999,
+      "n_blobs": 0,
+      "matches": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sym": -1,
+      "mean_dist_mm": null
+    },
+    {
+      "thr": 0.6499999999999999,
+      "n_blobs": 0,
+      "matches": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sym": -1,
+      "mean_dist_mm": null
+    },
+    {
+      "thr": 0.7,
+      "n_blobs": 0,
+      "matches": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sym": -1,
+      "mean_dist_mm": null
+    },
+    {
+      "thr": 0.7499999999999999,
+      "n_blobs": 0,
+      "matches": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sym": -1,
+      "mean_dist_mm": null
+    },
+    {
+      "thr": 0.7999999999999998,
+      "n_blobs": 0,
+      "matches": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sym": -1,
+      "mean_dist_mm": null
+    },
+    {
+      "thr": 0.8499999999999999,
+      "n_blobs": 0,
+      "matches": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sym": -1,
+      "mean_dist_mm": null
+    },
+    {
+      "thr": 0.8999999999999999,
+      "n_blobs": 0,
+      "matches": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sym": -1,
+      "mean_dist_mm": null
+    },
+    {
+      "thr": 0.9499999999999998,
+      "n_blobs": 0,
+      "matches": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "sym": -1,
+      "mean_dist_mm": null
+    }
+  ]
+}

@@ -1,0 +1,2207 @@
+[
+  {
+    "sample": "1",
+    "n_gt": 2,
+    "n_pred_blobs": 2,
+    "n_pred_pixels": 6683,
+    "n_gt_pixels": 3528,
+    "best_threshold": 0.39999999999999997,
+    "best_symmetry": 5,
+    "f1_unified": 1.0,
+    "p_unified": 1.0,
+    "r_unified": 1.0,
+    "f1_pixel": 0.6679071589462344,
+    "p_pixel": 0.5102498877749514,
+    "r_pixel": 0.9665532879818595,
+    "sweep": [
+      {
+        "thr": 0.3,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 2
+      },
+      {
+        "thr": 0.35,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 2
+      },
+      {
+        "thr": 0.39999999999999997,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "sym": 5
+      },
+      {
+        "thr": 0.44999999999999996,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "sym": 5
+      },
+      {
+        "thr": 0.49999999999999994,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "sym": 5
+      },
+      {
+        "thr": 0.5499999999999999,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "sym": 5
+      },
+      {
+        "thr": 0.5999999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 0
+      },
+      {
+        "thr": 0.6499999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 0
+      },
+      {
+        "thr": 0.7,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 0
+      },
+      {
+        "thr": 0.7499999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 0
+      },
+      {
+        "thr": 0.7999999999999998,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "sym": 7
+      },
+      {
+        "thr": 0.8499999999999999,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "sym": 7
+      },
+      {
+        "thr": 0.8999999999999999,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "sym": 7
+      },
+      {
+        "thr": 0.9499999999999998,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "sym": 7
+      }
+    ],
+    "t_gt_s": 0.46135807037353516,
+    "t_pred_s": 54.36058211326599,
+    "split": "TRAIN",
+    "dataset": "atlanta2"
+  },
+  {
+    "sample": "2",
+    "n_gt": 3,
+    "n_pred_blobs": 2,
+    "n_pred_pixels": 4220,
+    "n_gt_pixels": 213,
+    "best_threshold": 0.44999999999999996,
+    "best_symmetry": 3,
+    "f1_unified": 0.8,
+    "p_unified": 1.0,
+    "r_unified": 0.6666666666666666,
+    "f1_pixel": 0.06361380554928941,
+    "p_pixel": 0.033412322274881515,
+    "r_pixel": 0.6619718309859155,
+    "sweep": [
+      {
+        "thr": 0.3,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 3
+      },
+      {
+        "thr": 0.35,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 3
+      },
+      {
+        "thr": 0.39999999999999997,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 3
+      },
+      {
+        "thr": 0.44999999999999996,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1": 0.8,
+        "sym": 3
+      },
+      {
+        "thr": 0.49999999999999994,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 2
+      },
+      {
+        "thr": 0.5499999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 4
+      },
+      {
+        "thr": 0.5999999999999999,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1": 0.8,
+        "sym": 2
+      },
+      {
+        "thr": 0.6499999999999999,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1": 0.8,
+        "sym": 3
+      },
+      {
+        "thr": 0.7,
+        "n_blobs": 2,
+        "matches": 1,
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4,
+        "sym": 4
+      },
+      {
+        "thr": 0.7499999999999999,
+        "n_blobs": 2,
+        "matches": 1,
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4,
+        "sym": 4
+      },
+      {
+        "thr": 0.7999999999999998,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.8499999999999999,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.8999999999999999,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.9499999999999998,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      }
+    ],
+    "t_gt_s": 0.34142494201660156,
+    "t_pred_s": 55.41883587837219,
+    "split": "TRAIN",
+    "dataset": "atlanta2"
+  },
+  {
+    "sample": "3",
+    "n_gt": 4,
+    "n_pred_blobs": 3,
+    "n_pred_pixels": 4342,
+    "n_gt_pixels": 576,
+    "best_threshold": 0.5999999999999999,
+    "best_symmetry": 7,
+    "f1_unified": 0.8571428571428571,
+    "p_unified": 1.0,
+    "r_unified": 0.75,
+    "f1_pixel": 0.06303375355835705,
+    "p_pixel": 0.0356978350990327,
+    "r_pixel": 0.2690972222222222,
+    "sweep": [
+      {
+        "thr": 0.3,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 4
+      },
+      {
+        "thr": 0.35,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 4
+      },
+      {
+        "thr": 0.39999999999999997,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 4
+      },
+      {
+        "thr": 0.44999999999999996,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 4
+      },
+      {
+        "thr": 0.49999999999999994,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 1
+      },
+      {
+        "thr": 0.5499999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 6
+      },
+      {
+        "thr": 0.5999999999999999,
+        "n_blobs": 3,
+        "matches": 3,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571428571428571,
+        "sym": 7
+      },
+      {
+        "thr": 0.6499999999999999,
+        "n_blobs": 3,
+        "matches": 3,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571428571428571,
+        "sym": 7
+      },
+      {
+        "thr": 0.7,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 7
+      },
+      {
+        "thr": 0.7499999999999999,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 6
+      },
+      {
+        "thr": 0.7999999999999998,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 6
+      },
+      {
+        "thr": 0.8499999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 6
+      },
+      {
+        "thr": 0.8999999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 6
+      },
+      {
+        "thr": 0.9499999999999998,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 6
+      }
+    ],
+    "t_gt_s": 0.0721290111541748,
+    "t_pred_s": 54.93937802314758,
+    "split": "TRAIN",
+    "dataset": "atlanta2"
+  },
+  {
+    "sample": "4",
+    "n_gt": 4,
+    "n_pred_blobs": 4,
+    "n_pred_pixels": 6434,
+    "n_gt_pixels": 4096,
+    "best_threshold": 0.6499999999999999,
+    "best_symmetry": 4,
+    "f1_unified": 1.0,
+    "p_unified": 1.0,
+    "r_unified": 1.0,
+    "f1_pixel": 0.5388414055080721,
+    "p_pixel": 0.44093876282250544,
+    "r_pixel": 0.692626953125,
+    "sweep": [
+      {
+        "thr": 0.3,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 7
+      },
+      {
+        "thr": 0.35,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 7
+      },
+      {
+        "thr": 0.39999999999999997,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 6
+      },
+      {
+        "thr": 0.44999999999999996,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 6
+      },
+      {
+        "thr": 0.49999999999999994,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 6
+      },
+      {
+        "thr": 0.5499999999999999,
+        "n_blobs": 3,
+        "matches": 3,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571428571428571,
+        "sym": 1
+      },
+      {
+        "thr": 0.5999999999999999,
+        "n_blobs": 3,
+        "matches": 3,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571428571428571,
+        "sym": 1
+      },
+      {
+        "thr": 0.6499999999999999,
+        "n_blobs": 4,
+        "matches": 4,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "sym": 4
+      },
+      {
+        "thr": 0.7,
+        "n_blobs": 4,
+        "matches": 4,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "sym": 4
+      },
+      {
+        "thr": 0.7499999999999999,
+        "n_blobs": 4,
+        "matches": 4,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "sym": 4
+      },
+      {
+        "thr": 0.7999999999999998,
+        "n_blobs": 4,
+        "matches": 4,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "sym": 6
+      },
+      {
+        "thr": 0.8499999999999999,
+        "n_blobs": 3,
+        "matches": 3,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571428571428571,
+        "sym": 1
+      },
+      {
+        "thr": 0.8999999999999999,
+        "n_blobs": 3,
+        "matches": 3,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571428571428571,
+        "sym": 1
+      },
+      {
+        "thr": 0.9499999999999998,
+        "n_blobs": 3,
+        "matches": 3,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571428571428571,
+        "sym": 1
+      }
+    ],
+    "t_gt_s": 0.5860130786895752,
+    "t_pred_s": 55.612186908721924,
+    "split": "TRAIN",
+    "dataset": "atlanta2"
+  },
+  {
+    "sample": "5",
+    "n_gt": 9,
+    "n_pred_blobs": 4,
+    "n_pred_pixels": 3677,
+    "n_gt_pixels": 1296,
+    "best_threshold": 0.5499999999999999,
+    "best_symmetry": 6,
+    "f1_unified": 0.6153846153846153,
+    "p_unified": 1.0,
+    "r_unified": 0.4444444444444444,
+    "f1_pixel": 0.18499899457068167,
+    "p_pixel": 0.12510198531411476,
+    "r_pixel": 0.3549382716049383,
+    "sweep": [
+      {
+        "thr": 0.3,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.1111111111111111,
+        "f1": 0.19999999999999998,
+        "sym": 6
+      },
+      {
+        "thr": 0.35,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.1111111111111111,
+        "f1": 0.19999999999999998,
+        "sym": 6
+      },
+      {
+        "thr": 0.39999999999999997,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.2222222222222222,
+        "f1": 0.3636363636363636,
+        "sym": 0
+      },
+      {
+        "thr": 0.44999999999999996,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.1111111111111111,
+        "f1": 0.19999999999999998,
+        "sym": 6
+      },
+      {
+        "thr": 0.49999999999999994,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.1111111111111111,
+        "f1": 0.19999999999999998,
+        "sym": 3
+      },
+      {
+        "thr": 0.5499999999999999,
+        "n_blobs": 4,
+        "matches": 4,
+        "precision": 1.0,
+        "recall": 0.4444444444444444,
+        "f1": 0.6153846153846153,
+        "sym": 6
+      },
+      {
+        "thr": 0.5999999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.1111111111111111,
+        "f1": 0.19999999999999998,
+        "sym": 4
+      },
+      {
+        "thr": 0.6499999999999999,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.7,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.7499999999999999,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.7999999999999998,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.8499999999999999,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.8999999999999999,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.9499999999999998,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      }
+    ],
+    "t_gt_s": 0.22870683670043945,
+    "t_pred_s": 55.682454109191895,
+    "split": "TRAIN",
+    "dataset": "atlanta2"
+  },
+  {
+    "sample": "6",
+    "n_gt": 3,
+    "n_pred_blobs": 3,
+    "n_pred_pixels": 4097,
+    "n_gt_pixels": 213,
+    "best_threshold": 0.5499999999999999,
+    "best_symmetry": 4,
+    "f1_unified": 0.6666666666666666,
+    "p_unified": 0.6666666666666666,
+    "r_unified": 0.6666666666666666,
+    "f1_pixel": 0.06589327146171693,
+    "p_pixel": 0.034659506956309497,
+    "r_pixel": 0.6666666666666666,
+    "sweep": [
+      {
+        "thr": 0.3,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 3
+      },
+      {
+        "thr": 0.35,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 3
+      },
+      {
+        "thr": 0.39999999999999997,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 3
+      },
+      {
+        "thr": 0.44999999999999996,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 3
+      },
+      {
+        "thr": 0.49999999999999994,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 2
+      },
+      {
+        "thr": 0.5499999999999999,
+        "n_blobs": 3,
+        "matches": 2,
+        "precision": 0.6666666666666666,
+        "recall": 0.6666666666666666,
+        "f1": 0.6666666666666666,
+        "sym": 4
+      },
+      {
+        "thr": 0.5999999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 7
+      },
+      {
+        "thr": 0.6499999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 3
+      },
+      {
+        "thr": 0.7,
+        "n_blobs": 2,
+        "matches": 1,
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4,
+        "sym": 4
+      },
+      {
+        "thr": 0.7499999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 4
+      },
+      {
+        "thr": 0.7999999999999998,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.8499999999999999,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.8999999999999999,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.9499999999999998,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      }
+    ],
+    "t_gt_s": 0.3355100154876709,
+    "t_pred_s": 54.17832899093628,
+    "split": "TRAIN",
+    "dataset": "atlanta2"
+  },
+  {
+    "sample": "7",
+    "n_gt": 19,
+    "n_pred_blobs": 3,
+    "n_pred_pixels": 3645,
+    "n_gt_pixels": 474,
+    "best_threshold": 0.39999999999999997,
+    "best_symmetry": 1,
+    "f1_unified": 0.2727272727272727,
+    "p_unified": 1.0,
+    "r_unified": 0.15789473684210525,
+    "f1_pixel": 0.1228453508133042,
+    "p_pixel": 0.06941015089163237,
+    "r_pixel": 0.5337552742616034,
+    "sweep": [
+      {
+        "thr": 0.3,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.05263157894736842,
+        "f1": 0.1,
+        "sym": 1
+      },
+      {
+        "thr": 0.35,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.05263157894736842,
+        "f1": 0.1,
+        "sym": 1
+      },
+      {
+        "thr": 0.39999999999999997,
+        "n_blobs": 3,
+        "matches": 3,
+        "precision": 1.0,
+        "recall": 0.15789473684210525,
+        "f1": 0.2727272727272727,
+        "sym": 1
+      },
+      {
+        "thr": 0.44999999999999996,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.10526315789473684,
+        "f1": 0.1904761904761905,
+        "sym": 1
+      },
+      {
+        "thr": 0.49999999999999994,
+        "n_blobs": 3,
+        "matches": 3,
+        "precision": 1.0,
+        "recall": 0.15789473684210525,
+        "f1": 0.2727272727272727,
+        "sym": 3
+      },
+      {
+        "thr": 0.5499999999999999,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.10526315789473684,
+        "f1": 0.1904761904761905,
+        "sym": 4
+      },
+      {
+        "thr": 0.5999999999999999,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.10526315789473684,
+        "f1": 0.1904761904761905,
+        "sym": 4
+      },
+      {
+        "thr": 0.6499999999999999,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.10526315789473684,
+        "f1": 0.1904761904761905,
+        "sym": 0
+      },
+      {
+        "thr": 0.7,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.05263157894736842,
+        "f1": 0.1,
+        "sym": 0
+      },
+      {
+        "thr": 0.7499999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.05263157894736842,
+        "f1": 0.1,
+        "sym": 0
+      },
+      {
+        "thr": 0.7999999999999998,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.8499999999999999,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.8999999999999999,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.9499999999999998,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      }
+    ],
+    "t_gt_s": 0.2866072654724121,
+    "t_pred_s": 54.60125994682312,
+    "split": "TRAIN",
+    "dataset": "atlanta2"
+  },
+  {
+    "sample": "8",
+    "n_gt": 3,
+    "n_pred_blobs": 2,
+    "n_pred_pixels": 5184,
+    "n_gt_pixels": 1072,
+    "best_threshold": 0.6499999999999999,
+    "best_symmetry": 7,
+    "f1_unified": 0.8,
+    "p_unified": 1.0,
+    "r_unified": 0.6666666666666666,
+    "f1_pixel": 0.1649616368286445,
+    "p_pixel": 0.09953703703703703,
+    "r_pixel": 0.48134328358208955,
+    "sweep": [
+      {
+        "thr": 0.3,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 3
+      },
+      {
+        "thr": 0.35,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 3
+      },
+      {
+        "thr": 0.39999999999999997,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 3
+      },
+      {
+        "thr": 0.44999999999999996,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 3
+      },
+      {
+        "thr": 0.49999999999999994,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 3
+      },
+      {
+        "thr": 0.5499999999999999,
+        "n_blobs": 3,
+        "matches": 2,
+        "precision": 0.6666666666666666,
+        "recall": 0.6666666666666666,
+        "f1": 0.6666666666666666,
+        "sym": 7
+      },
+      {
+        "thr": 0.5999999999999999,
+        "n_blobs": 3,
+        "matches": 2,
+        "precision": 0.6666666666666666,
+        "recall": 0.6666666666666666,
+        "f1": 0.6666666666666666,
+        "sym": 3
+      },
+      {
+        "thr": 0.6499999999999999,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1": 0.8,
+        "sym": 7
+      },
+      {
+        "thr": 0.7,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1": 0.8,
+        "sym": 7
+      },
+      {
+        "thr": 0.7499999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 4
+      },
+      {
+        "thr": 0.7999999999999998,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.8499999999999999,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.8999999999999999,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.9499999999999998,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      }
+    ],
+    "t_gt_s": 0.08153796195983887,
+    "t_pred_s": 54.152390003204346,
+    "split": "TRAIN",
+    "dataset": "atlanta2"
+  },
+  {
+    "sample": "9",
+    "n_gt": 4,
+    "n_pred_blobs": 3,
+    "n_pred_pixels": 5223,
+    "n_gt_pixels": 4324,
+    "best_threshold": 0.49999999999999994,
+    "best_symmetry": 6,
+    "f1_unified": 0.8571428571428571,
+    "p_unified": 1.0,
+    "r_unified": 0.75,
+    "f1_pixel": 0.6309835550434691,
+    "p_pixel": 0.5766800689259046,
+    "r_pixel": 0.696577243293247,
+    "sweep": [
+      {
+        "thr": 0.3,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 7
+      },
+      {
+        "thr": 0.35,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 7
+      },
+      {
+        "thr": 0.39999999999999997,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 5
+      },
+      {
+        "thr": 0.44999999999999996,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 5
+      },
+      {
+        "thr": 0.49999999999999994,
+        "n_blobs": 3,
+        "matches": 3,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571428571428571,
+        "sym": 6
+      },
+      {
+        "thr": 0.5499999999999999,
+        "n_blobs": 3,
+        "matches": 2,
+        "precision": 0.6666666666666666,
+        "recall": 0.5,
+        "f1": 0.5714285714285715,
+        "sym": 2
+      },
+      {
+        "thr": 0.5999999999999999,
+        "n_blobs": 3,
+        "matches": 3,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571428571428571,
+        "sym": 4
+      },
+      {
+        "thr": 0.6499999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 4
+      },
+      {
+        "thr": 0.7,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 4
+      },
+      {
+        "thr": 0.7499999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 4
+      },
+      {
+        "thr": 0.7999999999999998,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 4
+      },
+      {
+        "thr": 0.8499999999999999,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 5
+      },
+      {
+        "thr": 0.8999999999999999,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 5
+      },
+      {
+        "thr": 0.9499999999999998,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "sym": 6
+      }
+    ],
+    "t_gt_s": 1.134606122970581,
+    "t_pred_s": 54.29248809814453,
+    "split": "TRAIN",
+    "dataset": "atlanta2"
+  },
+  {
+    "sample": "10",
+    "n_gt": 21,
+    "n_pred_blobs": 3,
+    "n_pred_pixels": 3332,
+    "n_gt_pixels": 3458,
+    "best_threshold": 0.49999999999999994,
+    "best_symmetry": 7,
+    "f1_unified": 0.25,
+    "p_unified": 1.0,
+    "r_unified": 0.14285714285714285,
+    "f1_pixel": 0.3463917525773196,
+    "p_pixel": 0.35294117647058826,
+    "r_pixel": 0.340080971659919,
+    "sweep": [
+      {
+        "thr": 0.3,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.09523809523809523,
+        "f1": 0.17391304347826084,
+        "sym": 1
+      },
+      {
+        "thr": 0.35,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.09523809523809523,
+        "f1": 0.17391304347826084,
+        "sym": 1
+      },
+      {
+        "thr": 0.39999999999999997,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.09523809523809523,
+        "f1": 0.17391304347826084,
+        "sym": 1
+      },
+      {
+        "thr": 0.44999999999999996,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.09523809523809523,
+        "f1": 0.17391304347826084,
+        "sym": 1
+      },
+      {
+        "thr": 0.49999999999999994,
+        "n_blobs": 3,
+        "matches": 3,
+        "precision": 1.0,
+        "recall": 0.14285714285714285,
+        "f1": 0.25,
+        "sym": 7
+      },
+      {
+        "thr": 0.5499999999999999,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.09523809523809523,
+        "f1": 0.17391304347826084,
+        "sym": 3
+      },
+      {
+        "thr": 0.5999999999999999,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.09523809523809523,
+        "f1": 0.17391304347826084,
+        "sym": 3
+      },
+      {
+        "thr": 0.6499999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.047619047619047616,
+        "f1": 0.0909090909090909,
+        "sym": 0
+      },
+      {
+        "thr": 0.7,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.7499999999999999,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.7999999999999998,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.8499999999999999,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.8999999999999999,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.9499999999999998,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      }
+    ],
+    "t_gt_s": 0.18651914596557617,
+    "t_pred_s": 55.11154007911682,
+    "split": "TRAIN",
+    "dataset": "atlanta2"
+  },
+  {
+    "sample": "11",
+    "n_gt": 21,
+    "n_pred_blobs": 3,
+    "n_pred_pixels": 3741,
+    "n_gt_pixels": 2154,
+    "best_threshold": 0.44999999999999996,
+    "best_symmetry": 6,
+    "f1_unified": 0.25,
+    "p_unified": 1.0,
+    "r_unified": 0.14285714285714285,
+    "f1_pixel": 0.3833757421543681,
+    "p_pixel": 0.3020582731889869,
+    "r_pixel": 0.5246053853296193,
+    "sweep": [
+      {
+        "thr": 0.3,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.047619047619047616,
+        "f1": 0.0909090909090909,
+        "sym": 6
+      },
+      {
+        "thr": 0.35,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.047619047619047616,
+        "f1": 0.0909090909090909,
+        "sym": 7
+      },
+      {
+        "thr": 0.39999999999999997,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.09523809523809523,
+        "f1": 0.17391304347826084,
+        "sym": 6
+      },
+      {
+        "thr": 0.44999999999999996,
+        "n_blobs": 3,
+        "matches": 3,
+        "precision": 1.0,
+        "recall": 0.14285714285714285,
+        "f1": 0.25,
+        "sym": 6
+      },
+      {
+        "thr": 0.49999999999999994,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.09523809523809523,
+        "f1": 0.17391304347826084,
+        "sym": 6
+      },
+      {
+        "thr": 0.5499999999999999,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.09523809523809523,
+        "f1": 0.17391304347826084,
+        "sym": 6
+      },
+      {
+        "thr": 0.5999999999999999,
+        "n_blobs": 3,
+        "matches": 3,
+        "precision": 1.0,
+        "recall": 0.14285714285714285,
+        "f1": 0.25,
+        "sym": 4
+      },
+      {
+        "thr": 0.6499999999999999,
+        "n_blobs": 3,
+        "matches": 3,
+        "precision": 1.0,
+        "recall": 0.14285714285714285,
+        "f1": 0.25,
+        "sym": 3
+      },
+      {
+        "thr": 0.7,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.09523809523809523,
+        "f1": 0.17391304347826084,
+        "sym": 6
+      },
+      {
+        "thr": 0.7499999999999999,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.09523809523809523,
+        "f1": 0.17391304347826084,
+        "sym": 3
+      },
+      {
+        "thr": 0.7999999999999998,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.09523809523809523,
+        "f1": 0.17391304347826084,
+        "sym": 3
+      },
+      {
+        "thr": 0.8499999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.047619047619047616,
+        "f1": 0.0909090909090909,
+        "sym": 0
+      },
+      {
+        "thr": 0.8999999999999999,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.9499999999999998,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      }
+    ],
+    "t_gt_s": 2.5906808376312256,
+    "t_pred_s": 52.517574071884155,
+    "split": "VAL",
+    "dataset": "atlanta2"
+  },
+  {
+    "sample": "12",
+    "n_gt": 10,
+    "n_pred_blobs": 6,
+    "n_pred_pixels": 4186,
+    "n_gt_pixels": 2125,
+    "best_threshold": 0.5499999999999999,
+    "best_symmetry": 5,
+    "f1_unified": 0.7499999999999999,
+    "p_unified": 1.0,
+    "r_unified": 0.6,
+    "f1_pixel": 0.29504040564094436,
+    "p_pixel": 0.22240802675585283,
+    "r_pixel": 0.43811764705882356,
+    "sweep": [
+      {
+        "thr": 0.3,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.1,
+        "f1": 0.18181818181818182,
+        "sym": 7
+      },
+      {
+        "thr": 0.35,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.1,
+        "f1": 0.18181818181818182,
+        "sym": 6
+      },
+      {
+        "thr": 0.39999999999999997,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.1,
+        "f1": 0.18181818181818182,
+        "sym": 0
+      },
+      {
+        "thr": 0.44999999999999996,
+        "n_blobs": 3,
+        "matches": 3,
+        "precision": 1.0,
+        "recall": 0.3,
+        "f1": 0.4615384615384615,
+        "sym": 0
+      },
+      {
+        "thr": 0.49999999999999994,
+        "n_blobs": 5,
+        "matches": 5,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 0
+      },
+      {
+        "thr": 0.5499999999999999,
+        "n_blobs": 6,
+        "matches": 6,
+        "precision": 1.0,
+        "recall": 0.6,
+        "f1": 0.7499999999999999,
+        "sym": 5
+      },
+      {
+        "thr": 0.5999999999999999,
+        "n_blobs": 6,
+        "matches": 6,
+        "precision": 1.0,
+        "recall": 0.6,
+        "f1": 0.7499999999999999,
+        "sym": 3
+      },
+      {
+        "thr": 0.6499999999999999,
+        "n_blobs": 4,
+        "matches": 4,
+        "precision": 1.0,
+        "recall": 0.4,
+        "f1": 0.5714285714285715,
+        "sym": 7
+      },
+      {
+        "thr": 0.7,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.2,
+        "f1": 0.33333333333333337,
+        "sym": 3
+      },
+      {
+        "thr": 0.7499999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.1,
+        "f1": 0.18181818181818182,
+        "sym": 7
+      },
+      {
+        "thr": 0.7999999999999998,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.1,
+        "f1": 0.18181818181818182,
+        "sym": 7
+      },
+      {
+        "thr": 0.8499999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.1,
+        "f1": 0.18181818181818182,
+        "sym": 7
+      },
+      {
+        "thr": 0.8999999999999999,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.9499999999999998,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      }
+    ],
+    "t_gt_s": 0.1746828556060791,
+    "t_pred_s": 51.84880995750427,
+    "split": "TRAIN",
+    "dataset": "atlanta2"
+  },
+  {
+    "sample": "13",
+    "n_gt": 6,
+    "n_pred_blobs": 5,
+    "n_pred_pixels": 4443,
+    "n_gt_pixels": 1539,
+    "best_threshold": 0.5999999999999999,
+    "best_symmetry": 7,
+    "f1_unified": 0.7272727272727272,
+    "p_unified": 0.8,
+    "r_unified": 0.6666666666666666,
+    "f1_pixel": 0.30959545302574387,
+    "p_pixel": 0.20841773576412334,
+    "r_pixel": 0.6016894087069525,
+    "sweep": [
+      {
+        "thr": 0.3,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.16666666666666666,
+        "f1": 0.2857142857142857,
+        "sym": 3
+      },
+      {
+        "thr": 0.35,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.16666666666666666,
+        "f1": 0.2857142857142857,
+        "sym": 3
+      },
+      {
+        "thr": 0.39999999999999997,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.16666666666666666,
+        "f1": 0.2857142857142857,
+        "sym": 6
+      },
+      {
+        "thr": 0.44999999999999996,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.16666666666666666,
+        "f1": 0.2857142857142857,
+        "sym": 6
+      },
+      {
+        "thr": 0.49999999999999994,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.16666666666666666,
+        "f1": 0.2857142857142857,
+        "sym": 6
+      },
+      {
+        "thr": 0.5499999999999999,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 7
+      },
+      {
+        "thr": 0.5999999999999999,
+        "n_blobs": 5,
+        "matches": 4,
+        "precision": 0.8,
+        "recall": 0.6666666666666666,
+        "f1": 0.7272727272727272,
+        "sym": 7
+      },
+      {
+        "thr": 0.6499999999999999,
+        "n_blobs": 4,
+        "matches": 3,
+        "precision": 0.75,
+        "recall": 0.5,
+        "f1": 0.6,
+        "sym": 7
+      },
+      {
+        "thr": 0.7,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 2
+      },
+      {
+        "thr": 0.7499999999999999,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 2
+      },
+      {
+        "thr": 0.7999999999999998,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 3
+      },
+      {
+        "thr": 0.8499999999999999,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "sym": 3
+      },
+      {
+        "thr": 0.8999999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.16666666666666666,
+        "f1": 0.2857142857142857,
+        "sym": 3
+      },
+      {
+        "thr": 0.9499999999999998,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.16666666666666666,
+        "f1": 0.2857142857142857,
+        "sym": 3
+      }
+    ],
+    "t_gt_s": 1.370347023010254,
+    "t_pred_s": 52.45601797103882,
+    "split": "VAL",
+    "dataset": "atlanta2"
+  },
+  {
+    "sample": "14",
+    "n_gt": 0,
+    "n_pred_blobs": 0,
+    "n_pred_pixels": 3380,
+    "n_gt_pixels": 0,
+    "best_threshold": 0.8999999999999999,
+    "best_symmetry": -1,
+    "f1_unified": 0.0,
+    "p_unified": 0.0,
+    "r_unified": 0.0,
+    "f1_pixel": 0.0,
+    "p_pixel": 0.0,
+    "r_pixel": 0.0,
+    "sweep": [
+      {
+        "thr": 0.3,
+        "n_blobs": 1,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.35,
+        "n_blobs": 1,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.39999999999999997,
+        "n_blobs": 1,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.44999999999999996,
+        "n_blobs": 1,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.49999999999999994,
+        "n_blobs": 1,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.5499999999999999,
+        "n_blobs": 2,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.5999999999999999,
+        "n_blobs": 2,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.6499999999999999,
+        "n_blobs": 2,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.7,
+        "n_blobs": 3,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.7499999999999999,
+        "n_blobs": 2,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.7999999999999998,
+        "n_blobs": 2,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.8499999999999999,
+        "n_blobs": 1,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.8999999999999999,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      },
+      {
+        "thr": 0.9499999999999998,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      }
+    ],
+    "t_gt_s": 0.001981973648071289,
+    "t_pred_s": 51.31790804862976,
+    "split": "NOVOID",
+    "dataset": "atlanta2"
+  },
+  {
+    "sample": "15",
+    "n_gt": 2,
+    "n_pred_blobs": 2,
+    "n_pred_pixels": 5597,
+    "n_gt_pixels": 3380,
+    "best_threshold": 0.5499999999999999,
+    "best_symmetry": 6,
+    "f1_unified": 1.0,
+    "p_unified": 1.0,
+    "r_unified": 1.0,
+    "f1_pixel": 0.33797482455163197,
+    "p_pixel": 0.27103805610148296,
+    "r_pixel": 0.44881656804733727,
+    "sweep": [
+      {
+        "thr": 0.3,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 0
+      },
+      {
+        "thr": 0.35,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 0
+      },
+      {
+        "thr": 0.39999999999999997,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 0
+      },
+      {
+        "thr": 0.44999999999999996,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 7
+      },
+      {
+        "thr": 0.49999999999999994,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 7
+      },
+      {
+        "thr": 0.5499999999999999,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "sym": 6
+      },
+      {
+        "thr": 0.5999999999999999,
+        "n_blobs": 2,
+        "matches": 2,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "sym": 6
+      },
+      {
+        "thr": 0.6499999999999999,
+        "n_blobs": 3,
+        "matches": 2,
+        "precision": 0.6666666666666666,
+        "recall": 1.0,
+        "f1": 0.8,
+        "sym": 6
+      },
+      {
+        "thr": 0.7,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 6
+      },
+      {
+        "thr": 0.7499999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 6
+      },
+      {
+        "thr": 0.7999999999999998,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 6
+      },
+      {
+        "thr": 0.8499999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 6
+      },
+      {
+        "thr": 0.8999999999999999,
+        "n_blobs": 1,
+        "matches": 1,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "sym": 6
+      },
+      {
+        "thr": 0.9499999999999998,
+        "n_blobs": 0,
+        "matches": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "sym": -1
+      }
+    ],
+    "t_gt_s": 0.6358988285064697,
+    "t_pred_s": 51.595162868499756,
+    "split": "TRAIN",
+    "dataset": "atlanta2"
+  }
+]

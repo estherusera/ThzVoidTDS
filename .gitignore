@@ -18,5 +18,22 @@ __pycache__/
 # Mendeley cache
 mendeley_cfrp/
 
+# Large regenerable data (too big / regenerable from .tprj + scripts)
+*.zip
+ascan_cache_atlanta1/
+ascan_cache_atlanta2/
+slices_v2_2050/
+slices_v2_atlanta2_2050/
+slices_v2_atlanta2_500/
+labels_v2_atlanta2_pseudo/
+labels_v2_atlanta2_pseudo_2050/
+
+# Large interactive viewers (regenerable via build_viewer*.py)
+*viewer*.html
+alignment_picker.html
+
 # macOS
 .DS_Store
+
+# Office temp lock files
+~$*

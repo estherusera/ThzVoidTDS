@@ -6,9 +6,9 @@ Same workflow as thz_slice_pipeline.py but each sample is cropped to its
 All samples become 100×100 px after cropping.
 
 Usage:
-    thesis_env/bin/python thz_slice_pipelinev2.py label
-    thesis_env/bin/python thz_slice_pipelinev2.py train
-    thesis_env/bin/python thz_slice_pipelinev2.py predict
+    thesis_env/bin/python thz_slice_pipelinev2.py label      # atlanta1 (default)
+    thesis_env/bin/python thz_slice_pipelinev2.py train atlanta2
+    thesis_env/bin/python thz_slice_pipelinev2.py predict atlanta2
 """
 
 import sys, json
@@ -34,49 +34,58 @@ try:
 except ImportError:
     HAS_TORCH = False
 
+# ── dataset registry ──────────────────────────────────────────────────────────
+DATASETS = {
+    "atlanta1": dict(
+        tprj="3D_print_esther_atlanta.tprj",
+        roi_json="sample_rois.json",
+        slices_dir="slices_v2",
+        labels_dir="labels_v2",
+        results_dir="results_v2",
+        physical_names={
+            "1":    "1", "2":    "2", "3":    "3", "4":    "4",
+            "5":    "5", "5b":   "5b",
+            "6-9":  "6",
+            "7":    "7", "8":    "8",
+            "9-6.": "9",
+            "10":   "10", "11":   "11", "12":   "12", "13":   "13",
+            "14":   "14", "15":   "15",
+        },
+        spacing_overrides={"1": dict(dx_mm=0.2, dy_mm=0.5)},
+        no_void_samples={"14"},
+    ),
+    "atlanta2": dict(
+        tprj="3D_print_esther_atlanta2.tprj",
+        roi_json="sample_rois_atlanta2.json",
+        slices_dir="slices_v2_atlanta2",
+        labels_dir="labels_v2_atlanta2",
+        results_dir="results_v2_atlanta2",
+        physical_names={**{str(i): str(i) for i in range(1, 16)},
+                        "sample 6": "6"},
+        spacing_overrides={},
+        no_void_samples={"14"},
+    ),
+}
+
+# Mode is sys.argv[1]; optional sys.argv[2] = dataset name (default atlanta1)
+DATASET = sys.argv[2] if len(sys.argv) > 2 and sys.argv[2] in DATASETS else "atlanta1"
+_CFG    = DATASETS[DATASET]
+
 # ── constants ─────────────────────────────────────────────────────────────────
-TPRJ      = "3D_print_esther_atlanta.tprj"
-ROI_JSON  = "sample_rois.json"
+TPRJ      = _CFG["tprj"]
+ROI_JSON  = _CFG["roi_json"]
 N_SLICES  = 50
 CONTEXT   = 2       # ±2 neighbouring slices as extra input channels
 N_EPOCHS  = 300
 LR        = 1e-3
 
-LABELS_DIR  = Path("labels_v2")
-RESULTS_DIR = Path("results_v2")
+SLICES_DIR  = Path(_CFG["slices_dir"])
+LABELS_DIR  = Path(_CFG["labels_dir"])
+RESULTS_DIR = Path(_CFG["results_dir"])
 
-# Samples confirmed to have NO voids — always included in training with all-zero masks
-NO_VOID_SAMPLES = {"14"}
-
-PHYSICAL_NAMES = {
-    "1":    "1",
-    "2":    "2",
-    "3":    "3",
-    "4":    "4",
-    "5":    "5",
-    "5b":   "5b",
-    "6-9":  "6",
-    "7":    "7",
-    "8":    "8",
-    "9-6.": "9",
-    "10":   "10",
-    "11":   "11",
-    "12":   "12",
-    "13":   "13",
-    "14":   "14",
-    "15":   "15",
-}
-
-# Sample 1's tprj range metadata is doubled (±30 mm instead of ±15 mm),
-# causing load_all_volumes to infer wrong spacing. Override to match sample 7.
-SPACING_OVERRIDES = {
-    "1": dict(dx_mm=0.2, dy_mm=0.5),
-}
-
-
-# ── data loading ──────────────────────────────────────────────────────────────
-
-SLICES_DIR = Path("slices_v2")
+NO_VOID_SAMPLES   = _CFG["no_void_samples"]
+PHYSICAL_NAMES    = _CFG["physical_names"]
+SPACING_OVERRIDES = _CFG["spacing_overrides"]
 
 
 def load_roi_samples(rois: dict) -> list:
@@ -620,12 +629,18 @@ def plot_history(history):
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage:")
-        print("  python thz_slice_pipelinev2.py label")
-        print("  python thz_slice_pipelinev2.py train")
-        print("  python thz_slice_pipelinev2.py predict")
+        print("  python thz_slice_pipelinev2.py <mode> [dataset]")
+        print("  <mode>:    label | train | predict")
+        print(f"  [dataset]: {' | '.join(DATASETS)}   (default: atlanta1)")
         sys.exit(1)
 
     mode = sys.argv[1]
+    print(f"\n=== thz_slice_pipelinev2 — mode={mode}  dataset={DATASET} ===")
+    print(f"    tprj:    {TPRJ}")
+    print(f"    rois:    {ROI_JSON}")
+    print(f"    slices:  {SLICES_DIR}/")
+    print(f"    labels:  {LABELS_DIR}/")
+    print(f"    results: {RESULTS_DIR}/\n")
 
     DEVICE = "cpu"
     if HAS_TORCH:
@@ -634,6 +649,11 @@ if __name__ == "__main__":
                              torch.backends.mps.is_available() else "cpu")
 
     # Load ROIs
+    if not Path(ROI_JSON).exists():
+        print(f"ERROR: {ROI_JSON} not found.")
+        print(f"  Run the ROI labeler first:")
+        print(f"    thesis_env/bin/python roi_labeler.py {DATASET}")
+        sys.exit(1)
     with open(ROI_JSON) as fh:
         rois = json.load(fh)
 

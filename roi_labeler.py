@@ -21,7 +21,8 @@ Output:
   Pixel coordinates in isotropic-zoomed space (after min(dx,dy) resampling).
 
 Run:
-    thesis_env/bin/python roi_labeler.py
+    thesis_env/bin/python roi_labeler.py                   # atlanta1 (default)
+    thesis_env/bin/python roi_labeler.py atlanta2          # atlanta2 dataset
 """
 
 import sys, os, json
@@ -39,13 +40,22 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from thz_slice_pipeline import load_all_volumes, process_to_slices
 
-TPRJ     = "3D_print_esther_atlanta.tprj"
-OUT_JSON = "sample_rois.json"
+# Dataset registry: each entry → (tprj path, output ROI json)
+DATASETS = {
+    "atlanta1": dict(tprj="3D_print_esther_atlanta.tprj",
+                     out_json="sample_rois.json"),
+    "atlanta2": dict(tprj="3D_print_esther_atlanta2.tprj",
+                     out_json="sample_rois_atlanta2.json"),
+}
+
+# Selected via CLI arg (default: atlanta1 for back-compat)
+DATASET  = sys.argv[1] if len(sys.argv) > 1 and sys.argv[1] in DATASETS else "atlanta1"
+TPRJ     = DATASETS[DATASET]["tprj"]
+OUT_JSON = DATASETS[DATASET]["out_json"]
 N_SLICES = 250
 
 # Physical name mapping: tprj sample_name → human label
-# (tprj names are like "3D_print_esther_atlanta/2", "…/6-9", etc.)
-PHYSICAL_NAMES = {
+PHYSICAL_NAMES_ATLANTA1 = {
     "1":    "1",
     "2":    "2",
     "3":    "3",
@@ -63,16 +73,21 @@ PHYSICAL_NAMES = {
     "14":   "14",
     "15":   "15",
 }
+# atlanta2 names are already clean (1..15, with "sample 6" instead of "6")
+PHYSICAL_NAMES_ATLANTA2 = {str(i): str(i) for i in range(1, 16)}
+PHYSICAL_NAMES_ATLANTA2["sample 6"] = "6"
+
+PHYSICAL_NAMES = (PHYSICAL_NAMES_ATLANTA2 if DATASET == "atlanta2"
+                  else PHYSICAL_NAMES_ATLANTA1)
 
 CMAP = plt.get_cmap("Reds", 200)
 NORM = mcolors.Normalize(vmin=0, vmax=1)
 ROI_MM = 20.0   # all physical samples are 20×20mm
 
 # Override spacing for samples whose tprj range metadata is wrong.
-# Sample 1 has ±30mm range stored instead of ±15mm (same Ny=61, Nx=152 as samples 6-9, 7).
-SPACING_OVERRIDES = {
-    "1": dict(dx_mm=0.2, dy_mm=0.5),
-}
+# (Only needed for atlanta1 — sample 1 had ±30mm range stored instead of ±15mm.)
+SPACING_OVERRIDES = ({} if DATASET == "atlanta2"
+                     else {"1": dict(dx_mm=0.2, dy_mm=0.5)})
 
 
 class ROILabeler:
@@ -327,6 +342,10 @@ class ROILabeler:
 
 
 def main():
+    print(f"\n=== ROI Labeler — dataset: {DATASET} ===")
+    print(f"    tprj:  {TPRJ}")
+    print(f"    out:   {OUT_JSON}\n")
+
     if os.path.exists(OUT_JSON):
         with open(OUT_JSON) as fh:
             saved = json.load(fh)

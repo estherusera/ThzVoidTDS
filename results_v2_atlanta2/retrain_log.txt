@@ -1,0 +1,52 @@
+
+=== retrain_pseudo (atlanta2, 500-slice + weighted manual) ===
+
+  manual weight: 5.0
+  pseudo weight: 1.0
+  offsets:       [-10, -5, 0, 5, 10]
+  epochs:        60
+  batch:         16
+
+  samples: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15']
+
+Building combined label volumes:
+    1: pseudo (500) + 50 manual @ weight 5.0  (16 of manual are positive)
+    2: pseudo (500) + 50 manual @ weight 5.0  (4 of manual are positive)
+    3: pseudo (500) + 50 manual @ weight 5.0  (7 of manual are positive)
+    4: pseudo (500) + 50 manual @ weight 5.0  (31 of manual are positive)
+    5: pseudo (500) + 50 manual @ weight 5.0  (11 of manual are positive)
+    6: pseudo (500) + 50 manual @ weight 5.0  (6 of manual are positive)
+    7: pseudo (500) + 50 manual @ weight 5.0  (8 of manual are positive)
+    8: pseudo (500) + 50 manual @ weight 5.0  (17 of manual are positive)
+    9: pseudo (500) + 50 manual @ weight 5.0  (15 of manual are positive)
+    10: pseudo (500) + 50 manual @ weight 5.0  (0 of manual are positive)
+    11: pseudo (500) + 50 manual @ weight 5.0  (15 of manual are positive)
+    12: pseudo (500) + 50 manual @ weight 5.0  (14 of manual are positive)
+    13: pseudo (500) + 50 manual @ weight 5.0  (17 of manual are positive)
+    14: no-void → all-zero target, weight 1.0
+    15: pseudo (500) + 50 manual @ weight 5.0  (15 of manual are positive)
+  Dataset: 7500 slice-mask-weight triples
+    manual-label slices:   700  (weight 5.0)
+    pseudo-label slices:   6300  (weight 1.0)
+    no-void zero-masks:    500  (weight 1.0)
+
+Training: 7500 items, 60 epochs, batch=16, 1,928,993 params, device=mps
+──────────────────────────────────────────────────────────────────────
+  Epoch   1/60 | Loss 0.5263 | Dice 0.6619 | IoU 0.6387 | elapsed 0.7 min
+  Epoch   5/60 | Loss 0.1178 | Dice 0.8736 | IoU 0.8529 | elapsed 3.3 min
+  Epoch  10/60 | Loss 0.1019 | Dice 0.8922 | IoU 0.8720 | elapsed 6.4 min
+  Epoch  15/60 | Loss 0.0970 | Dice 0.8969 | IoU 0.8770 | elapsed 9.6 min
+  Epoch  20/60 | Loss 0.0879 | Dice 0.9011 | IoU 0.8810 | elapsed 12.7 min
+  Epoch  25/60 | Loss 0.0815 | Dice 0.9086 | IoU 0.8885 | elapsed 17.6 min
+  Epoch  30/60 | Loss 0.0790 | Dice 0.9146 | IoU 0.8952 | elapsed 20.8 min
+  Epoch  35/60 | Loss 0.0747 | Dice 0.9215 | IoU 0.9023 | elapsed 26.8 min
+  Epoch  40/60 | Loss 0.0716 | Dice 0.9272 | IoU 0.9088 | elapsed 29.8 min
+  Epoch  45/60 | Loss 0.0691 | Dice 0.9294 | IoU 0.9112 | elapsed 33.0 min
+  Epoch  50/60 | Loss 0.0640 | Dice 0.9330 | IoU 0.9149 | elapsed 36.1 min
+  Epoch  55/60 | Loss 0.0622 | Dice 0.9374 | IoU 0.9197 | elapsed 39.1 min
+  Epoch  60/60 | Loss 0.0623 | Dice 0.9367 | IoU 0.9189 | elapsed 42.2 min
+
+Saved: results_v2_atlanta2/unet_pseudo.pt
+Saved: results_v2_atlanta2/training_curves_pseudo.png
+
+Final — Loss 0.0623 | Dice 0.9367 | IoU 0.9189

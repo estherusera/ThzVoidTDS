@@ -1,0 +1,46 @@
+
+=== export_slices — dataset: atlanta1 ===
+    tprj:  3D_print_esther_atlanta.tprj
+    rois:  sample_rois.json
+    out:   slices_v2_2050/
+
+Loading volumes from tprj…
+  ✓ Test_frame: (2050, 121, 92)
+  ✓ sample 15: (2050, 151, 72)  dy=0.200 dx=0.500 mm
+  ✓ sample 14: (2050, 151, 72)  dy=0.200 dx=0.500 mm
+  ✓ sample 13: (2050, 151, 72)  dy=0.200 dx=0.500 mm
+  ✓ sample 12: (2050, 151, 72)  dy=0.200 dx=0.500 mm
+  ✓ sample 11: (2050, 151, 72)  dy=0.200 dx=0.500 mm
+  ✓ sample 10: (2050, 151, 72)  dy=0.200 dx=0.493 mm
+  ✓ sample 8: (2050, 151, 177)  dy=0.200 dx=0.200 mm
+  ✓ sample 7: (2050, 61, 152)  dy=0.500 dx=0.200 mm
+  ✓ sample 9-6.: (2050, 61, 152)  dy=0.500 dx=0.200 mm
+  ✓ sample 6-9: (2050, 61, 152)  dy=0.500 dx=0.200 mm
+  ✓ sample 5b: (2050, 61, 152)  dy=0.500 dx=0.200 mm
+  ✓ sample 5: (2050, 61, 152)  dy=0.500 dx=0.200 mm
+  ✓ sample 4: (2050, 61, 152)  dy=0.500 dx=0.200 mm
+  ✓ sample 3: (2050, 61, 152)  dy=0.500 dx=0.200 mm
+  ✓ sample 2: (2050, 61, 152)  dy=0.500 dx=0.200 mm
+  ✓ sample 1: (2050, 61, 152)  dy=1.000 dx=0.397 mm
+
+Exporting 2050-slice ROI crops to slices_v2_2050/
+
+  ✓  15  (2050, 100, 100)  depth 0–4.27 mm
+  ✓  14  (2050, 100, 100)  depth 0–4.27 mm
+  ✓  13  (2050, 100, 100)  depth 0–4.27 mm
+  ✓  12  (2050, 100, 100)  depth 0–4.27 mm
+  ✓  11  (2050, 100, 100)  depth 0–4.27 mm
+  ✓  10  (2050, 100, 100)  depth 0–4.27 mm
+  ✓  8  (2050, 100, 100)  depth 0–4.27 mm
+  ✓  7  (2050, 100, 100)  depth 0–4.27 mm
+  ✓  9  (2050, 100, 100)  depth 0–4.26 mm
+  ✓  6  (2050, 100, 100)  depth 0–4.26 mm
+  ✓  5b  (2050, 100, 100)  depth 0–4.26 mm
+  ✓  5  (2050, 100, 100)  depth 0–4.26 mm
+  ✓  4  (2050, 100, 100)  depth 0–4.26 mm
+  ✓  3  (2050, 100, 100)  depth 0–4.26 mm
+  ✓  2  (2050, 100, 100)  depth 0–4.27 mm
+  ✓  1  (2050, 100, 100)  depth 0–4.27 mm
+
+Done. 16 samples exported to slices_v2_2050/
+Now run:  git add slices_v2/ && git commit -m 'add exported slices' && git push
