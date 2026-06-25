@@ -1,6 +1,6 @@
 # THz Void Detection — Project Wiki
 
-> Backup memory for this project. Maintained by the assistant. Last updated: 2026-06-08.
+> Backup memory for this project. Maintained by the assistant. Last updated: 2026-06-24.
 > If anything here conflicts with the code, the code wins — verify and fix this file.
 
 ---
@@ -83,6 +83,29 @@ visible voids in that scan) and 0 model predictions.
 Raw volume `(N_time=2050, Ny, Nx)` → depth slices. Implemented in
 `thz_slice_pipeline.process_to_slices()`:
 
+0. **Band-pass denoise** (NEW, Jun 2026): zero-phase Butterworth band-pass on the
+   time axis, default **0.1–2.5 THz** (`thz_slice_pipeline.bandpass_filter`).
+   Sampling is dt≈0.0218 ps → fs≈45.9 THz (Nyquist ≈22.9 THz), so unfiltered
+   A-scans carry ~20 THz of out-of-band noise; the filter removes it before the
+   envelope. Applied in both `process_to_slices` and the A-scan cache builder
+   (`ascan_classifier.flatten_volume`). **Toggle/tune via env vars** (no code edit):
+   `THZ_BANDPASS=0` disables (**default ON**), `THZ_BANDPASS_LO`, `THZ_BANDPASS_HI`,
+   `THZ_BANDPASS_ORDER`. A/B harness: `run_bandpass_ab.sh`. **Default is ON, but the
+   effect is metric- and architecture-dependent** — it helps the C-scan/slice
+   pipeline and the U-Net-BiLSTM but regresses the 1D-CNN on the per-blob metric
+   (see §9 and the authoritative §15). The filter median-subtracts + zero-pads
+   before `sosfiltfilt` to avoid edge-ringing.
+   **Caches + slice .npy must be rebuilt from the .tprj for the filter to take
+   effect** (existing committed exports are pre-filter).
+   ⚠️ **Surface alignment is detected on the RAW envelope, not the filtered one.**
+   The band-pass turns the sharp front-surface pulse into a ringing wavelet with
+   several comparable peaks; if the per-pixel `argmax` surface detector runs on
+   the filtered envelope it snaps different image regions onto different ring
+   lobes → **blocky depth-snapping artifacts** in the slices/B-scans. Fix (in
+   both `process_to_slices` and `ascan_classifier.flatten_volume`): detect the
+   surface + roll-shifts on the raw envelope, then take slice VALUES from the
+   filtered envelope. The filtering itself is per-A-scan along time (correct);
+   only the alignment was the problem.
 1. **Hilbert envelope** along the time axis.
 2. **Surface detection + flattening**: find the front-surface peak per pixel
    (strongest envelope peak near the global surface), roll each A-scan so all
@@ -160,6 +183,8 @@ Each dir has `{name}_slices.npy` and `{name}_depths.npy`.
 | `train_unet_stl.py` | Train the 2.5D U-Net on STL-derived soft labels (`labels_stl_atlanta2/`). Same architecture as `thz_slice_pipelinev2.py train` mode. Outputs `unet_stl.pt`. |
 | `eval_unet_stl.py` | Unified per-blob STL eval of the STL-trained U-Net so it's comparable to `ascan_vs_stl.py` and `void_characterize.py`. |
 | `compare_3way.py` | Three-way comparison: manual-U-Net vs A-scan vs STL-U-Net, under the same metric. Outputs `three_way/three_way_comparison.png` + `stl_unet_showcase.png`. |
+| `dataset_properties.py` | Characterise the void-label distribution (depth coverage, lateral width, axial thickness, overlap/stacking, per-sample class balance). `dataset_properties.py [atlanta1\|atlanta2]`. Outputs `dataset_properties_{ds}.png/.pdf/.json`. See §9. |
+| `view_3d.py` | Interactive 3D volume viewer (plotly) for a sample's slice volume. `view_3d.py <sample> [--dir slices_v2] [--mode signed\|raw] [--iso]`. |
 | `slice_viewer.py` | Old matplotlib GUI slice viewer (legacy). |
 | `void_detector.py` | Reference-subtraction void detector — **abandoned** (detected voids everywhere, ineffective). |
 
@@ -176,6 +201,8 @@ All are 2D U-Net, in_channels=5, base_filters=32, **1,928,993 params**, ~7.4 MB.
 |---|---|---|---|---|
 | `results_v2/unet_v2.pt` | atlanta1 manual | 50 | [-2,-1,0,1,2] | — (148 labelled slices) |
 | `results_v2_atlanta2/unet_v2.pt` | (copy of atlanta1 model) | — | — | — |
+| `results_v2_atlanta2/unet_50_nofilt.pt` | atlanta2 manual, unfiltered | 50 | [-2,-1,0,1,2] | 0.058 / 0.938 / 0.913 (train-fit) |
+| `results_v2_atlanta2/unet_50_bp.pt` | atlanta2 manual, **band-pass** | 50 | [-2,-1,0,1,2] | 0.095 / 0.896 / 0.866 (train-fit) |
 | `results_v2_atlanta2/unet_pseudo.pt` | atlanta2 pseudo+manual | 500 | [-10,-5,0,5,10] | 0.062 / 0.937 / 0.919 |
 | `results_v2_atlanta2/unet_pseudo_2050.pt` | atlanta2 pseudo+manual | 2050 | [-40,-20,0,20,40] | **0.023 / 0.978 / 0.967** |
 
@@ -236,6 +263,58 @@ The larger/cleaner atlanta2 training set produced a more robust detector that
 transfers across scan sessions and resolutions. Best: samples 3, 15, 1, 8, 9.
 Total misses: samples 2 and 10 (single labelled slice, bad scans).
 
+### Void label distribution (`dataset_properties.py`, atlanta2)
+Characterises what the model actually trains on (manual masks, 13 void samples;
+s10/s14 have no voids). 66 voids → 201,538 void A-scan/depth labels.
+- **Depth coverage is imbalanced**: void labels span ~1.0–3.8 mm and peak ~1.5 and
+  ~3.0 mm; there are **essentially zero voids shallower than ~1.0 mm or deeper than
+  ~3.8 mm**. The classifier sees almost no examples at the depth extremes.
+- **Overlap is large**: **59.8%** of void A-scans have ≥2 voids stacked along depth
+  (up to 5–6). This adds real intra-class variability to "void in an A-scan".
+- **Axial thickness** is mostly thin (<0.2 mm, single depth bin); a tail to ~1.4 mm.
+- **Lateral width** clusters at 2–6 mm equivalent diameter, tail to ~14 mm (S1/S15
+  large planar voids).
+- **Sample class balance is skewed**: S1/S4/S5/S9/S11/S12 each ≳4000 void A-scans;
+  S2/S3/S7 only ~500–900. Figures/JSON: `dataset_properties_atlanta2.{png,pdf,json}`.
+
+This supports the hypothesis that low recall at depth extremes / dense void patterns
+is partly a *data-repartition* problem, not only a model problem.
+
+### Band-pass A/B (Jun 2026) — depth-CNN's own voxel/per-point metric
+Controlled A/B with the A-scan depth-CNN on atlanta2 under identical code
+(`run_bandpass_ab.sh`): rebuilt the cache with a 0.1–2.5 THz Butterworth
+band-pass vs the unfiltered baseline, retrained + evaluated each (TRAIN n=12,
+VAL n=2). On the depth-CNN's **own** voxel/per-point metric, held-out VAL improves
+(post-fix — filtered cache rebuilt after the energy-blow-up and surface-detection
+fixes):
+
+| Metric | Unfiltered | Band-pass | Δ |
+|---|---|---|---|
+| VAL F1_2D | 0.605 | **0.672** | **+0.067** |
+| VAL F1_3D | 0.318 | **0.377** | **+0.058** |
+| TRAIN F1_2D | 0.506 | 0.363 | −0.144 |
+
+TRAIN drops while VAL rises (less overfitting to HF noise — the healthy direction).
+
+> ⚠️ **This is the depth-CNN's internal metric, NOT the authoritative per-blob
+> number.** Under the unified per-blob harness (§15) the picture is
+> **architecture-dependent**: band-pass *helps* the U-Net-BiLSTM (+0.088) and the
+> C-scan U-Net (+0.054) but *regresses* the 1D-CNN (−0.122). So "band-pass is
+> good" is not a blanket truth — see §15 for the authoritative comparison.
+> Outputs: `summary_depth_{nofilt,bp}.json`; figures `bandpass_ab_metrics.png`,
+> `bandpass_effect_ascan.png`.
+
+> ⚠️ **Filter-bug history (important):** the *first* A/B wrongly showed a
+> regression (VAL F1_3D 0.318→0.225). Cause was a bug, not physics:
+> `scipy.signal.sosfiltfilt`'s default odd padding rang on the sharp
+> surface-pulse at the trace boundary and **inflated signal energy ~20×**,
+> distorting the waveform shape (per-A-scan z-score hid the amplitude, not the
+> distortion). Fixed in `bandpass_filter` by **median-subtracting the baseline
+> and zero-padding ±1024 samples** before `sosfiltfilt`, then cropping. Verified:
+> energy ratio drops to ~0.23, a clean pulse passes at 0.99, white noise → 0.09.
+> Caveats still apply: VAL is only 2 samples (noisy), depth-CNN overfits, single
+> seed — treat the +0.05–0.10 gains as encouraging, not definitive.
+
 ### A-scan physics (atlanta2)
 Averaged signed A-scans over void vs background pixels show voids produce
 **stronger bipolar reflections** at 0.5–1.0 mm depth (CFRP→air interface). Sample 11
@@ -291,6 +370,8 @@ Built by `build_viewer.py`. Configs:
 | Config | Data | Model | Offsets | Output |
 |---|---|---|---|---|
 | `atlanta1` | atlanta1 50-slice | unet_v2 | ±2 | `results_v2/viewer.html` |
+| `atlanta2_50_nofilt` | atlanta2 50-slice (unfiltered) | unet_50_nofilt | ±2 | `results_v2_atlanta2/viewer_50_nofilt.html` |
+| `atlanta2_bp` | atlanta2 50-slice (**band-pass 0.1–2.5 THz**) | unet_50_bp | ±2 | `results_v2_atlanta2/viewer_50_bp.html` |
 | `atlanta2_pseudo` | atlanta2 500-slice | unet_pseudo | ±10 | `results_v2_atlanta2/viewer_pseudo.html` |
 | `atlanta2_2050` | atlanta2 2050-slice | unet_pseudo (500-trained) | ±40 | `viewer_2050.html` |
 | `atlanta2_2050_tight` | atlanta2 2050-slice | unet_pseudo | ±10 | `viewer_2050_tight.html` |
@@ -534,3 +615,85 @@ Built by `ascan_vs_stl_figures.py`.
 - `all_samples.png` — per-sample 2D max-projection grid
 - `per_sample/` — currently empty; intended for `prob_2d.npy` / `prob_3d.npy`
   per sample once depth-model eval runs
+
+---
+
+## 15. U-Net-BiLSTM A-scan segmenter (`ascan_unet_bilstm.py`, Jun 2026)
+
+Implementation of Zhang et al. (2024), *Quantitative Detection of Defects in
+Multi-Layer Lightweight Composite Structures Using THz-TDS Based on a
+U-Net-BiLSTM Network*, Materials 17(4):839 — adapted to this repo's A-scan cache.
+**Per-time-point** void segmentation: input one surface-flattened A-scan
+(1×2048), output a void probability at every time sample (2048). A BiLSTM is
+inserted on the **two deepest skip connections** (the paper's modification);
+full-length skips are left plain for speed. ~1.05M params.
+
+### Files
+| File | Purpose |
+|---|---|
+| `ascan_unet_bilstm.py` | model (`UNetBiLSTM1D`, `SkipBiLSTM`) + data helpers (apparent-frame 2048-point label builder, dataset, 2048→50-bin reduction). |
+| `train_ascan_unet_bilstm.py` | Dice+weighted-BCE (focal optional), AdamW+cosine, sample-level split, best-by-VAL ckpt → `runs/unet_bilstm/unet_bilstm_best.pt`, `metrics.jsonl`, `curves.png`. `--no_bilstm` ablation flag. |
+| `eval_ascan_unet_bilstm.py` | reduces per-time preds to a (50,NY,NX) volume and scores via the existing unified per-blob harness; per-point + cross-domain + 3-way table → `runs/unet_bilstm/eval_unified.json`. |
+
+### Labels (apparent-depth frame)
+Per-time labels at 2048 are regenerated from the SAME source as the 50-bin depth
+labels (the cache's `labels_3d` manual masks) by placing each void depth-bin at
+its true time index in the surface-flattened frame (Voronoi/nearest over
+`slice_indices = linspace(target_idx, N-1, 50)`) — NOT an upsample of the 50-bin
+vector. Verified to land on the void echo in the **apparent** (measured) frame,
+not the CAD depth (`label_align_check.png`). Caveat: void signal under the labels
+is weak (void/background |z-signal| ratio ~1.1-1.2), the inherent difficulty all
+A-scan models face here.
+
+### Results (unified per-blob F1, same matcher as §13)
+| Model | F1 | P | R |
+|---|---|---|---|
+| A-scan 1D-CNN (depth classifier) | **0.703** | 0.962 | 0.618 |
+| C-scan U-Net (manual labels) | 0.437 | 0.867 | 0.320 |
+| **U-Net-BiLSTM (NEW), atlanta2 all-void** | 0.521 | 0.929 | 0.401 |
+| U-Net-BiLSTM, atlanta2 VAL only | 0.295 | 1.000 | 0.190 |
+| U-Net-BiLSTM, atlanta1 cross-domain | 0.580 | 0.911 | 0.514 |
+
+**Verdict:** BiLSTM-in-skips beats the C-scan U-Net (+0.084) but NOT the A-scan
+1D-CNN depth classifier (0.521 vs 0.703). Generalises well cross-domain (0.580).
+Best val per-point F1 = 0.399 (40 epochs).
+
+### Per-point vs per-blob gap (atlanta2 void samples)
+Per-time-point F1 = **0.650** (P 0.507 / R 0.907) vs per-blob unified F1 =
+**0.521**. They measure different things: broad-in-time predictions inflate
+per-point recall, while the per-blob projection+MIN_AREA+8 mm matching raises
+precision (0.93) but gates recall (0.40). Whether the BiLSTM itself helps vs a
+plain 1D U-Net needs the `--no_bilstm` ablation (TODO).
+
+### Band-pass effect on the A-scan models (Jun 2026)
+Both A-scan architectures retrained on band-pass-filtered (0.1–2.5 THz) caches and
+scored through the unified per-blob harness (same matcher). Filtered-vs-unfiltered
+is same-architecture (clean delta). Caches: `ascan_cache_atlanta2_bp`,
+`ascan_cache_atlanta1_bp`; filtered BiLSTM `runs/unet_bilstm/unet_bilstm_bp_best.pt`
+(best val per-point F1 0.483 vs 0.399 unfiltered). Eval `eval_unified_bp_compare.py`
+→ `runs/unet_bilstm/eval_bp_compare.json`.
+
+| Model | unfilt F1 | bp F1 | Δ | VAL (bp) | cross-domain unfilt→bp |
+|---|---|---|---|---|---|
+| 1D-CNN (AScanCNN) | 0.679 | 0.556 | **−0.122** | 0.337 | 0.650→0.630 |
+| U-Net-BiLSTM | 0.521 | 0.610 | **+0.088** | **0.525** | 0.580→**0.669** |
+| C-scan U-Net (50-slice proxy) | 0.561 | 0.615 | +0.054 | — | — |
+
+> Note on the two 1D-CNN numbers: the **0.703** headline (above) is the original
+> depth-CNN (`DepthAwareAScanCNN`, AdaptiveAvgPool1d(50)+Conv1d head); the **0.679**
+> here is the `AScanCNN` variant (Flatten+Linear head) used in the band-pass A/B.
+> Same A-scan family, slightly different head, both ≈0.68–0.70 unfiltered — the
+> filtered-vs-unfiltered Δ uses the same architecture on both sides.
+
+**Band-pass is NOT uniformly good — it's architecture-dependent.** It helps the
+U-Net-BiLSTM (+0.088) and the C-scan U-Net (+0.054) but **hurts the 1D-CNN
+(−0.122)** on the per-blob metric (note: the 1D-CNN's own per-point/f1_stl A/B
+earlier showed a gain — the sign depends on the metric). Band-pass **flips the
+ranking**: unfiltered the 1D-CNN wins (0.679 > 0.521), but with band-pass the
+BiLSTM wins (0.610 > 0.556). On held-out VAL the **BiLSTM-bp is best overall
+(0.525)** and its cross-domain (0.669) is the strongest cross-domain result.
+Caveats: single seeds, 2-sample VAL — treat as indicative, not definitive.
+
+Viewers: `runs/unet_bilstm/viewer_ascan_compare.html` (unfiltered) and
+`viewer_ascan_compare_bp.html` (band-pass) — Input · GT · 1D-CNN · U-Net-BiLSTM,
+scrub depth/sample.

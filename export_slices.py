@@ -15,7 +15,7 @@ Run:
     thesis_env/bin/python export_slices.py atlanta2 500          # atlanta2, 500 slices
 """
 
-import sys, json
+import sys, json, os
 import numpy as np
 from pathlib import Path
 
@@ -51,8 +51,12 @@ _CFG     = DATASETS[DATASET]
 
 TPRJ              = _CFG["tprj"]
 ROI_JSON          = _CFG["roi_json"]
-# When using a non-default slice count, suffix the output directory
-OUT_DIR           = Path(_CFG["out_dir"] + (f"_{N_SLICES}" if N_SLICES != 50 else ""))
+# When using a non-default slice count, suffix the output directory.
+# THZ_OUT_DIR overrides it entirely (e.g. a band-pass-filtered export to a
+# separate dir so the unfiltered baseline isn't clobbered).
+OUT_DIR           = Path(os.environ.get(
+    "THZ_OUT_DIR",
+    _CFG["out_dir"] + (f"_{N_SLICES}" if N_SLICES != 50 else "")))
 PHYSICAL_NAMES    = _CFG["physical_names"]
 SPACING_OVERRIDES = _CFG["spacing_overrides"]
 

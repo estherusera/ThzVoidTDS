@@ -22,7 +22,7 @@ Run
   thesis_env/bin/python ascan_classifier.py eval              # eval atlanta2 + atlanta1
 """
 
-import sys, json, time
+import sys, json, time, os
 from pathlib import Path
 import numpy as np
 import matplotlib; matplotlib.use("Agg")
@@ -38,7 +38,7 @@ import trimesh
 _CLI = sys.argv[1] if len(sys.argv) > 1 else None
 sys.argv = [sys.argv[0], "predict", "atlanta2"]
 sys.path.insert(0, str(Path(__file__).parent))
-from thz_slice_pipeline import load_all_volumes
+from thz_slice_pipeline import load_all_volumes, bandpass_filter, BANDPASS_ENABLED
 
 # ── paths ────────────────────────────────────────────────────────────────────
 TPRJ_ATLANTA2 = "3D_print_esther_atlanta2.tprj"
@@ -49,13 +49,18 @@ MANUAL_DIR_2  = Path("labels_v2_atlanta2")
 MANUAL_DIR_1  = Path("labels_v2")
 STL_DIR       = Path("AllSamples/stl")
 
-CACHE_ATL2    = Path("ascan_cache_atlanta2")
-CACHE_ATL1    = Path("ascan_cache_atlanta1")
+# ASCAN_VARIANT labels a run (e.g. "_bp" band-pass-filtered, "_nofilt" baseline)
+# so the checkpoint and eval outputs never clobber another run. The cache dirs
+# are overridable separately (ASCAN_CACHE2/1) so a run can reuse an existing
+# cache instead of rebuilding it (e.g. the baseline reuses the unfiltered cache).
+VARIANT       = os.environ.get("ASCAN_VARIANT", "")
+CACHE_ATL2    = Path(os.environ.get("ASCAN_CACHE2", "ascan_cache_atlanta2"))
+CACHE_ATL1    = Path(os.environ.get("ASCAN_CACHE1", "ascan_cache_atlanta1"))
 OUT_DIR       = Path("results_v2_atlanta2/ascan_classifier")
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 CACHE_ATL2.mkdir(parents=True, exist_ok=True)
 CACHE_ATL1.mkdir(parents=True, exist_ok=True)
-MODEL_CKPT    = OUT_DIR / "ascan_cnn_depth.pt"
+MODEL_CKPT    = OUT_DIR / f"ascan_cnn_depth{VARIANT}.pt"
 
 # ── name mappings (consistent with rest of project) ──────────────────────────
 NAME_MAP_2 = {**{str(i): str(i) for i in range(1, 16)}, "sample 6": "6"}
@@ -87,7 +92,7 @@ NX = NY        = 100
 N_TIME         = 2050
 N_DEPTHS       = 50
 BATCH_SIZE     = 256
-N_EPOCHS       = 30
+N_EPOCHS       = int(os.environ.get("ASCAN_EPOCHS", "30"))
 LR             = 1e-3
 POS_WEIGHT     = 8.0
 
@@ -100,12 +105,19 @@ device = ("cuda" if torch.cuda.is_available()
 def flatten_volume(sample):
     vol = sample["volume"]; tax = sample["time_axis"]
     nt, ny, nx = vol.shape
+    # Surface alignment is detected on the RAW envelope (sharp, unambiguous
+    # front-surface pulse). Band-pass would turn that pulse into a ringing wavelet
+    # and make argmax snap regions onto different lobes → misaligned A-scans. We
+    # align on the raw pulse, then store the (optionally) band-pass-denoised
+    # waveform rolled by those same shifts.
     env = np.abs(hilbert(vol, axis=0))
     surf = int(np.argmax(env.mean(axis=(1, 2))))
     m = int(0.2 * nt)
     s0, s1 = max(0, surf - m), min(nt, surf + m)
     local  = s0 + np.argmax(env[s0:s1], axis=0)
     target = int(np.median(local))
+    if BANDPASS_ENABLED:
+        vol = bandpass_filter(vol, tax)   # denoise the values; alignment unchanged
     flat = np.empty_like(vol, dtype=np.float32)
     for iy in range(ny):
         for ix in range(nx):
@@ -292,7 +304,7 @@ def train():
                "val_p_3d":   [], "val_r_3d":    []}
     best_val_f1 = -1.0
     t0 = time.time()
-    metrics_path = OUT_DIR / "metrics.jsonl"
+    metrics_path = OUT_DIR / f"metrics{VARIANT}.jsonl"
     # truncate from previous runs
     with open(metrics_path, "w") as fh:
         fh.write("")
@@ -396,8 +408,8 @@ def train():
     axes[1].legend(); axes[1].grid(alpha=0.3); axes[1].set_title("3D voxel metrics")
     plt.suptitle("Depth-aware A-scan CNN — training", fontsize=11, fontweight="bold")
     plt.tight_layout()
-    plt.savefig(OUT_DIR / "training_curves_depth.png", dpi=140, bbox_inches="tight")
-    print(f"Saved: {OUT_DIR}/training_curves_depth.png")
+    plt.savefig(OUT_DIR / f"training_curves_depth{VARIANT}.png", dpi=140, bbox_inches="tight")
+    print(f"Saved: {OUT_DIR}/training_curves_depth{VARIANT}.png")
 
 
 # ── STL z-projection (for evaluation only) ───────────────────────────────────
@@ -563,9 +575,9 @@ def evaluate():
     for r in summary:
         light.append({k: v for k, v in r.items()
                       if k not in ("prob_vol_2d", "prob_3d", "gt_2d", "stl")})
-    with open(OUT_DIR / "summary_depth.json", "w") as fh:
+    with open(OUT_DIR / f"summary_depth{VARIANT}.json", "w") as fh:
         json.dump(light, fh, indent=2, default=float)
-    print(f"\nSaved: {OUT_DIR}/summary_depth.json")
+    print(f"\nSaved: {OUT_DIR}/summary_depth{VARIANT}.json")
 
 
 # ── main ─────────────────────────────────────────────────────────────────────

@@ -1,0 +1,100 @@
+===== 1/3  Build filtered atlanta1 cache (cross-domain) =====
+Loading atlanta1 tprj…
+  ✓ Test_frame: (2050, 121, 92)
+  ✓ sample 15: (2050, 151, 72)  dy=0.200 dx=0.500 mm
+  ✓ sample 14: (2050, 151, 72)  dy=0.200 dx=0.500 mm
+  ✓ sample 13: (2050, 151, 72)  dy=0.200 dx=0.500 mm
+  ✓ sample 12: (2050, 151, 72)  dy=0.200 dx=0.500 mm
+  ✓ sample 11: (2050, 151, 72)  dy=0.200 dx=0.500 mm
+  ✓ sample 10: (2050, 151, 72)  dy=0.200 dx=0.493 mm
+  ✓ sample 8: (2050, 151, 177)  dy=0.200 dx=0.200 mm
+  ✓ sample 7: (2050, 61, 152)  dy=0.500 dx=0.200 mm
+  ✓ sample 9-6.: (2050, 61, 152)  dy=0.500 dx=0.200 mm
+  ✓ sample 6-9: (2050, 61, 152)  dy=0.500 dx=0.200 mm
+  ✓ sample 5b: (2050, 61, 152)  dy=0.500 dx=0.200 mm
+  ✓ sample 5: (2050, 61, 152)  dy=0.500 dx=0.200 mm
+  ✓ sample 4: (2050, 61, 152)  dy=0.500 dx=0.200 mm
+  ✓ sample 3: (2050, 61, 152)  dy=0.500 dx=0.200 mm
+  ✓ sample 2: (2050, 61, 152)  dy=0.500 dx=0.200 mm
+  ✓ sample 1: (2050, 61, 152)  dy=1.000 dx=0.397 mm
+  ✓ 15  ascans=(10000, 2050)  void_pix_2d=2542  void_voxels_3d=17703  in 4.2s
+  ✓ 14  ascans=(10000, 2050)  void_pix_2d=0  void_voxels_3d=0  in 4.1s
+  ✓ 13  ascans=(10000, 2050)  void_pix_2d=2558  void_voxels_3d=6624  in 4.1s
+  ✓ 12  ascans=(10000, 2050)  void_pix_2d=4148  void_voxels_3d=12027  in 4.1s
+  ✓ 11  ascans=(10000, 2050)  void_pix_2d=2538  void_voxels_3d=4503  in 4.1s
+  ✓ 10  ascans=(10000, 2050)  void_pix_2d=240  void_voxels_3d=240  in 4.2s
+  ✓ 8  ascans=(10000, 2050)  void_pix_2d=2617  void_voxels_3d=10008  in 4.9s
+  ✓ 7  ascans=(10000, 2050)  void_pix_2d=642  void_voxels_3d=890  in 3.9s
+  ✓ 9  ascans=(10000, 2050)  void_pix_2d=3760  void_voxels_3d=22364  in 3.8s
+  ✓ 6  ascans=(10000, 2050)  void_pix_2d=441  void_voxels_3d=1037  in 3.8s
+  ✓ 5b  ascans=(10000, 2050)  void_pix_2d=3442  void_voxels_3d=7021  in 3.8s
+  ✓ 5  ascans=(10000, 2050)  void_pix_2d=3284  void_voxels_3d=11085  in 3.8s
+  ✓ 4  ascans=(10000, 2050)  void_pix_2d=6035  void_voxels_3d=44124  in 3.8s
+  ✓ 3  ascans=(10000, 2050)  void_pix_2d=1144  void_voxels_3d=6815  in 3.8s
+  ✓ 2  ascans=(10000, 2050)  void_pix_2d=187  void_voxels_3d=187  in 3.8s
+  ✓ 1  ascans=(10000, 2050)  void_pix_2d=4721  void_voxels_3d=44523  in 3.8s
+
+Cache written to ascan_cache_atlanta1_bp/
+
+===== 2/3  Retrain U-Net-BiLSTM on filtered atlanta2 cache =====
+device=mps  split TRAIN=['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '12', '15'] VAL=['11', '13']
+train items=120000  val items=20000
+train void fraction=0.0288  → pos_weight=20.0 (raw 33.7, capped at 20.0)
+model params=1,051,953  bilstm=ON  loss=dice_bce
+epoch   1/40  loss 0.6644  valF1 0.217  valDice 0.175  P 0.126 R 0.786  [2.8 min]
+epoch   2/40  loss 0.5654  valF1 0.427  valDice 0.368  P 0.373 R 0.500  [5.9 min]
+epoch   3/40  loss 0.4333  valF1 0.454  valDice 0.366  P 0.353 R 0.637  [8.9 min]
+epoch   4/40  loss 0.3960  valF1 0.403  valDice 0.299  P 0.295 R 0.635  [11.7 min]
+epoch   5/40  loss 0.3659  valF1 0.440  valDice 0.379  P 0.395 R 0.497  [14.6 min]
+epoch   6/40  loss 0.3533  valF1 0.447  valDice 0.388  P 0.342 R 0.648  [17.4 min]
+epoch   7/40  loss 0.3408  valF1 0.474  valDice 0.416  P 0.430 R 0.527  [20.1 min]
+epoch   8/40  loss 0.3471  valF1 0.345  valDice 0.307  P 0.221 R 0.780  [22.9 min]
+epoch   9/40  loss 0.3334  valF1 0.239  valDice 0.241  P 0.141 R 0.788  [25.6 min]
+epoch  10/40  loss 0.3122  valF1 0.407  valDice 0.384  P 0.286 R 0.706  [28.4 min]
+epoch  11/40  loss 0.3073  valF1 0.418  valDice 0.383  P 0.301 R 0.682  [31.2 min]
+epoch  12/40  loss 0.2997  valF1 0.243  valDice 0.234  P 0.146 R 0.733  [33.9 min]
+epoch  13/40  loss 0.2870  valF1 0.483  valDice 0.428  P 0.407 R 0.594  [36.7 min]
+epoch  14/40  loss 0.2828  valF1 0.332  valDice 0.328  P 0.209 R 0.805  [39.5 min]
+epoch  15/40  loss 0.2747  valF1 0.285  valDice 0.259  P 0.185 R 0.630  [42.2 min]
+epoch  16/40  loss 0.2671  valF1 0.294  valDice 0.290  P 0.188 R 0.673  [45.0 min]
+epoch  17/40  loss 0.2632  valF1 0.411  valDice 0.374  P 0.335 R 0.530  [47.8 min]
+epoch  18/40  loss 0.2551  valF1 0.407  valDice 0.380  P 0.302 R 0.624  [50.7 min]
+epoch  19/40  loss 0.2497  valF1 0.442  valDice 0.410  P 0.409 R 0.480  [53.6 min]
+epoch  20/40  loss 0.2426  valF1 0.344  valDice 0.327  P 0.234 R 0.650  [58.6 min]
+epoch  21/40  loss 0.2376  valF1 0.376  valDice 0.356  P 0.270 R 0.619  [62.2 min]
+epoch  22/40  loss 0.2321  valF1 0.382  valDice 0.358  P 0.285 R 0.578  [65.2 min]
+epoch  23/40  loss 0.2254  valF1 0.444  valDice 0.417  P 0.439 R 0.448  [68.2 min]
+epoch  24/40  loss 0.2210  valF1 0.364  valDice 0.351  P 0.260 R 0.606  [71.2 min]
+epoch  25/40  loss 0.2148  valF1 0.376  valDice 0.361  P 0.288 R 0.540  [74.2 min]
+epoch  26/40  loss 0.2085  valF1 0.368  valDice 0.360  P 0.266 R 0.597  [77.2 min]
+epoch  27/40  loss 0.2037  valF1 0.399  valDice 0.384  P 0.334 R 0.495  [80.2 min]
+epoch  28/40  loss 0.1996  valF1 0.380  valDice 0.366  P 0.312 R 0.486  [83.1 min]
+epoch  29/40  loss 0.1963  valF1 0.375  valDice 0.360  P 0.293 R 0.520  [85.9 min]
+epoch  30/40  loss 0.1907  valF1 0.365  valDice 0.357  P 0.282 R 0.515  [89.6 min]
+epoch  31/40  loss 0.1873  valF1 0.378  valDice 0.366  P 0.301 R 0.508  [93.3 min]
+epoch  32/40  loss 0.1830  valF1 0.366  valDice 0.354  P 0.301 R 0.469  [96.7 min]
+epoch  33/40  loss 0.1801  valF1 0.387  valDice 0.374  P 0.319 R 0.492  [100.1 min]
+epoch  34/40  loss 0.1779  valF1 0.363  valDice 0.351  P 0.296 R 0.470  [207.0 min]
+epoch  35/40  loss 0.1752  valF1 0.367  valDice 0.356  P 0.294 R 0.488  [210.6 min]
+epoch  36/40  loss 0.1730  valF1 0.371  valDice 0.360  P 0.296 R 0.497  [214.1 min]
+epoch  37/40  loss 0.1717  valF1 0.364  valDice 0.355  P 0.286 R 0.503  [217.7 min]
+epoch  38/40  loss 0.1703  valF1 0.370  valDice 0.360  P 0.298 R 0.488  [221.2 min]
+epoch  39/40  loss 0.1695  valF1 0.372  valDice 0.361  P 0.299 R 0.493  [224.7 min]
+epoch  40/40  loss 0.1699  valF1 0.372  valDice 0.361  P 0.303 R 0.483  [228.2 min]
+
+Done. best val per-point F1 = 0.483  → runs/unet_bilstm/unet_bilstm_bp_best.pt
+metrics: runs/unet_bilstm/metrics_bp.jsonl   curves: runs/unet_bilstm/curves_bp.png
+
+===== 3/3  Unified per-blob eval (filtered, both A-scan models) =====
+caches: ATL2=ascan_cache_atlanta2_bp  ATL1=ascan_cache_atlanta1_bp
+Traceback (most recent call last):
+  File "/Users/estheruseraciriza/Documents/GaTechcourses/Thesis work /Code/eval_unified_bp_compare.py", line 154, in <module>
+    main()
+  File "/Users/estheruseraciriza/Documents/GaTechcourses/Thesis work /Code/eval_unified_bp_compare.py", line 116, in main
+    m.load_state_dict(torch.load(CNN_BP, map_location=device, weights_only=False)["model_state"]); m.eval()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/estheruseraciriza/Documents/GaTechcourses/Thesis work /Code/thesis_env/lib/python3.12/site-packages/torch/nn/modules/module.py", line 2635, in load_state_dict
+    raise RuntimeError(
+RuntimeError: Error(s) in loading state_dict for DepthAwareAScanCNN:
+	Missing key(s) in state_dict: "head.1.weight", "head.1.bias". 
+	Unexpected key(s) in state_dict: "head.2.weight", "head.2.bias". 

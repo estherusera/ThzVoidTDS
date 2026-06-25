@@ -24,13 +24,70 @@ import json
 import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider, Button, RectangleSelector
-from scipy.signal import hilbert
+from scipy.signal import hilbert, butter, sosfiltfilt
 from pathlib import Path
+import os
 import sys
 import warnings
 from PIL import Image
 
 warnings.filterwarnings('ignore')
+
+# ── Band-pass pre-filter (THz-TDS denoising) ─────────────────────────────────
+# Raw waveforms are sampled at ~46 THz (Nyquist ~23 THz), but the useful THz-TDS
+# band is roughly 0.1–2.5 THz; everything above is noise. A zero-phase
+# Butterworth band-pass on the time axis removes it before the Hilbert envelope.
+# Toggled/tuned via env vars so slice export and the A-scan cache can be A/B'd
+# without editing code:
+#   THZ_BANDPASS=0        disable → reproduce the old unfiltered pipeline
+#   THZ_BANDPASS_LO=0.1   low cutoff  (THz)
+#   THZ_BANDPASS_HI=2.5   high cutoff (THz)
+#   THZ_BANDPASS_ORDER=4  Butterworth order
+# Default is ON: a controlled A/B (Jun 2026, A-scan depth-CNN, atlanta2) showed
+# the 0.1–2.5 THz band-pass *improves* held-out detection (VAL F1_2D 0.605→0.700,
+# F1_3D 0.318→0.370, F1_STL 0.357→0.411). NOTE: an earlier A/B wrongly showed a
+# regression — that was a filter bug (sosfiltfilt edge ringing inflated energy
+# ~20x); fixed via median-subtract + zero-pad below. See Wiki §9.
+BANDPASS_ENABLED = os.environ.get("THZ_BANDPASS", "1") != "0"
+BANDPASS_LO_THZ  = float(os.environ.get("THZ_BANDPASS_LO", "0.1"))
+BANDPASS_HI_THZ  = float(os.environ.get("THZ_BANDPASS_HI", "2.5"))
+BANDPASS_ORDER   = int(os.environ.get("THZ_BANDPASS_ORDER", "4"))
+
+
+def bandpass_filter(volume, time_axis, f_lo_thz=None, f_hi_thz=None, order=None):
+    """Zero-phase Butterworth band-pass along the time axis (axis 0).
+
+    `time_axis` is in ps, so fs = 1/dt is in THz and the cutoffs are given
+    directly in THz. Returns the filtered volume (same shape/dtype). Returns the
+    input unchanged if the cutoffs are unusable for this sampling rate.
+    """
+    f_lo_thz = BANDPASS_LO_THZ if f_lo_thz is None else f_lo_thz
+    f_hi_thz = BANDPASS_HI_THZ if f_hi_thz is None else f_hi_thz
+    order    = BANDPASS_ORDER  if order    is None else order
+
+    dt  = float(np.mean(np.diff(time_axis)))   # ps
+    if dt <= 0:
+        return volume
+    nyq = 0.5 / dt                             # THz
+    lo  = f_lo_thz / nyq
+    hi  = min(f_hi_thz / nyq, 0.99)
+    if not (0 < lo < hi < 1):
+        return volume                          # cutoffs unusable; skip
+    sos = butter(order, [lo, hi], btype="band", output="sos")
+
+    # Edge handling: THz A-scans have a sharp near-impulse surface peak and a
+    # non-zero baseline, which makes sosfiltfilt's default odd padding reflect a
+    # large boundary value and ring (inflating energy ~20x). Subtract the
+    # per-pixel median baseline and zero-pad generously so the filter transient
+    # decays inside the pad, then crop back. Verified: clean pulse passes (~1.0),
+    # white noise attenuates (~0.1), no energy blow-up.
+    n   = volume.shape[0]
+    pad = min(1024, n)
+    med = np.median(volume, axis=0, keepdims=True)
+    pad_width = [(pad, pad)] + [(0, 0)] * (volume.ndim - 1)
+    vp  = np.pad(volume - med, pad_width, mode="constant")
+    y   = sosfiltfilt(sos, vp, axis=0)[pad:pad + n]
+    return y.astype(volume.dtype, copy=False)
 
 try:
     import torch
@@ -194,18 +251,29 @@ def process_to_slices(sample, n_slices=20, n_pla=1.57, c=0.29979):
     volume = sample['volume']
     N_time, Ny, Nx = volume.shape
     time_axis = sample['time_axis']
-    
-    # Envelope
-    envelope = np.abs(hilbert(volume, axis=0))
-    
-    # Surface detection + flattening: this is the strongest peak in the averaged A-scan, which finds the time index where the THz pulse first hits the sample surface. 
-    mean_ascan = np.mean(envelope, axis=(1, 2))
+
+    # Envelope used for SURFACE DETECTION is always the raw (unfiltered) one: the
+    # front-surface reflection is a sharp, unambiguous pulse. The band-pass turns
+    # it into a ringing wavelet with several comparable peaks, so detecting the
+    # surface on the *filtered* envelope makes argmax snap different image regions
+    # onto different ring lobes → blocky depth artifacts after flattening. We
+    # therefore align on the raw pulse and only take the slice VALUES from the
+    # (optionally) filtered envelope.
+    env_surface = np.abs(hilbert(volume, axis=0))
+    if BANDPASS_ENABLED:
+        envelope = np.abs(hilbert(bandpass_filter(volume, time_axis), axis=0))
+    else:
+        envelope = env_surface
+
+    # Surface detection: strongest peak in the averaged (raw) A-scan = time index
+    # where the THz pulse first hits the sample surface.
+    mean_ascan = np.mean(env_surface, axis=(1, 2))
     surface_idx = np.argmax(mean_ascan)
-    
+
     margin = int(0.2 * N_time)
     s0, s1 = max(0, surface_idx - margin), min(N_time, surface_idx + margin)
-    #flatenning is odne so that it aligns all A-scans so the surface is at the same time index everywhere
-    local_surface = s0 + np.argmax(envelope[s0:s1], axis=0)
+    # flatten so all A-scans put the surface at the same time index everywhere
+    local_surface = s0 + np.argmax(env_surface[s0:s1], axis=0)
     target_idx = int(np.median(local_surface))
     
     #VER BIEN. 

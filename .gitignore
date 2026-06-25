@@ -20,6 +20,7 @@ mendeley_cfrp/
 
 # Large regenerable data (too big / regenerable from .tprj + scripts)
 *.zip
+ascan_cache_*/
 ascan_cache_atlanta1/
 ascan_cache_atlanta2/
 slices_v2_2050/

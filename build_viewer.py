@@ -36,6 +36,22 @@ VIEWER_CONFIGS = {
         out_html="results_v2_atlanta2/viewer.html",
         offsets=[-2, -1, 0, 1, 2],
     ),
+    "atlanta2_50_nofilt": dict(
+        # 50-slice U-Net trained on UNfiltered manual slices (band-pass A/B baseline)
+        slices_dir="slices_v2_atlanta2",
+        labels_dir="labels_v2_atlanta2",
+        model_path="results_v2_atlanta2/unet_50_nofilt.pt",
+        out_html="results_v2_atlanta2/viewer_50_nofilt.html",
+        offsets=[-2, -1, 0, 1, 2],
+    ),
+    "atlanta2_bp": dict(
+        # 50-slice U-Net trained on BAND-PASS-filtered (0.1-2.5 THz) manual slices
+        slices_dir="slices_v2_atlanta2_bp",
+        labels_dir="labels_v2_atlanta2",
+        model_path="results_v2_atlanta2/unet_50_bp.pt",
+        out_html="results_v2_atlanta2/viewer_50_bp.html",
+        offsets=[-2, -1, 0, 1, 2],
+    ),
     "atlanta2_pseudo": dict(
         slices_dir="slices_v2_atlanta2_500",
         labels_dir="labels_v2_atlanta2",        # 50-slice manual labels (sparse GT)

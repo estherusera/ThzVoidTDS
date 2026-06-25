@@ -1,0 +1,92 @@
+
+=== thz_slice_pipelinev2 — mode=train  dataset=atlanta2 ===
+    tprj:    3D_print_esther_atlanta2.tprj
+    rois:    sample_rois_atlanta2.json
+    slices:  slices_v2_atlanta2_bp/
+    labels:  labels_v2_atlanta2/
+    results: results_v2_atlanta2/
+
+Loading pre-exported slices from slices_v2_atlanta2_bp/
+  ✓  1  (50, 100, 100)  depth 0–4.27 mm
+  ✓  10  (50, 100, 100)  depth 0–4.27 mm
+  ✓  11  (50, 100, 100)  depth 0–4.27 mm
+  ✓  12  (50, 100, 100)  depth 0–4.27 mm
+  ✓  13  (50, 100, 100)  depth 0–4.27 mm
+  ✓  14  (50, 100, 100)  depth 0–4.27 mm
+  ✓  15  (50, 100, 100)  depth 0–4.27 mm
+  ✓  2  (50, 100, 100)  depth 0–4.27 mm
+  ✓  3  (50, 100, 100)  depth 0–4.27 mm
+  ✓  4  (50, 100, 100)  depth 0–4.27 mm
+  ✓  5  (50, 100, 100)  depth 0–4.27 mm
+  ✓  6  (50, 100, 100)  depth 0–4.27 mm
+  ✓  7  (50, 100, 100)  depth 0–4.27 mm
+  ✓  8  (50, 100, 100)  depth 0–4.27 mm
+  ✓  9  (50, 100, 100)  depth 0–4.27 mm
+  1: 16/50 slices labeled
+  10: no labeled slices, skipping
+  11: 15/50 slices labeled
+  12: 14/50 slices labeled
+  13: 17/50 slices labeled
+  14: no-void sample — included as 50 negative slices
+  15: 15/50 slices labeled
+  2: 4/50 slices labeled
+  3: 7/50 slices labeled
+  4: 31/50 slices labeled
+  5: 11/50 slices labeled
+  6: 6/50 slices labeled
+  7: 8/50 slices labeled
+  8: 17/50 slices labeled
+  9: 15/50 slices labeled
+
+Total: 176 void slices, 524 empty slices
+  Dataset: 700 slice-mask pairs (5 channels each, 100×100 px)
+
+Training: 700 pairs, 300 epochs, 1,928,993 params, device=mps
+────────────────────────────────────────────────────────────
+  Epoch    1 | Loss 0.6345 | Dice 0.4033 | IoU 0.3734
+  Epoch   25 | Loss 0.1509 | Dice 0.8335 | IoU 0.8041
+  Epoch   50 | Loss 0.1209 | Dice 0.8590 | IoU 0.8283
+  Epoch   75 | Loss 0.1262 | Dice 0.8547 | IoU 0.8246
+  Epoch  100 | Loss 0.1325 | Dice 0.8440 | IoU 0.8140
+  Epoch  125 | Loss 0.1031 | Dice 0.8787 | IoU 0.8462
+  Epoch  150 | Loss 0.0923 | Dice 0.8945 | IoU 0.8641
+  Epoch  175 | Loss 0.0965 | Dice 0.8955 | IoU 0.8656
+  Epoch  200 | Loss 0.0802 | Dice 0.9103 | IoU 0.8798
+  Epoch  225 | Loss 0.0750 | Dice 0.9136 | IoU 0.8833
+  Epoch  250 | Loss 0.0688 | Dice 0.9222 | IoU 0.8932
+  Epoch  275 | Loss 0.0645 | Dice 0.9255 | IoU 0.8976
+  Epoch  300 | Loss 0.0653 | Dice 0.9240 | IoU 0.8961
+Model saved: results_v2_atlanta2/unet_50_bp.pt
+Results saved to results_v2_atlanta2/
+
+============================================================
+Final — Loss 0.0653 | Dice 0.9240 | IoU 0.8961
+Viewer config: atlanta2_bp  (stride=1)
+  slices:    slices_v2_atlanta2_bp/
+  manual GT: labels_v2_atlanta2/
+  model:     results_v2_atlanta2/unet_50_bp.pt
+  offsets:   [-2, -1, 0, 1, 2]
+  out HTML:  results_v2_atlanta2/viewer_50_bp.html
+
+  model loaded from results_v2_atlanta2/unet_50_bp.pt
+
+  15 samples: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15']
+
+  processing sample 1  (50 of 50 slices)…
+  processing sample 2  (50 of 50 slices)…
+  processing sample 3  (50 of 50 slices)…
+  processing sample 4  (50 of 50 slices)…
+  processing sample 5  (50 of 50 slices)…
+  processing sample 6  (50 of 50 slices)…
+  processing sample 7  (50 of 50 slices)…
+  processing sample 8  (50 of 50 slices)…
+  processing sample 9  (50 of 50 slices)…
+  processing sample 10  (50 of 50 slices)…
+  processing sample 11  (50 of 50 slices)…
+  processing sample 12  (50 of 50 slices)…
+  processing sample 13  (50 of 50 slices)…
+  processing sample 14  (50 of 50 slices)…
+  processing sample 15  (50 of 50 slices)…
+
+  done — results_v2_atlanta2/viewer_50_bp.html
+  40.8 MB  ·  750 embedded slices across 15 samples

@@ -1,0 +1,96 @@
+Loading atlanta2 tprj…
+  ✓ 1: (2050, 151, 151)
+  ✓ 10: (2050, 151, 151)
+  ✓ 11: (2050, 151, 151)
+  ✓ 12: (2050, 151, 151)
+  ✓ 13: (2050, 151, 151)
+  ✓ 14: (2050, 151, 151)
+  ✓ 15: (2050, 151, 151)
+  ✓ 2: (2050, 151, 151)
+  ✓ 3: (2050, 151, 151)
+  ✓ 4: (2050, 151, 151)
+  ✓ 5: (2050, 151, 151)
+  ✓ 7: (2050, 151, 151)
+  ✓ 8: (2050, 151, 151)
+  ✓ 9: (2050, 151, 151)
+  ✓ sample 6: (2050, 151, 152)  dy=0.200 dx=0.200 mm
+  ✓ 1  ascans=(10000, 2050)  void_pix_2d=4684  void_voxels_3d=37982  in 11.7s
+  ✓ 10  ascans=(10000, 2050)  void_pix_2d=0  void_voxels_3d=0  in 10.8s
+  ✓ 11  ascans=(10000, 2050)  void_pix_2d=4012  void_voxels_3d=19297  in 11.3s
+  ✓ 12  ascans=(10000, 2050)  void_pix_2d=4087  void_voxels_3d=16560  in 10.8s
+  ✓ 13  ascans=(10000, 2050)  void_pix_2d=3439  void_voxels_3d=13123  in 11.0s
+  ✓ 14  ascans=(10000, 2050)  void_pix_2d=0  void_voxels_3d=0  in 11.1s
+  ✓ 15  ascans=(10000, 2050)  void_pix_2d=2533  void_voxels_3d=19422  in 10.8s
+  ✓ 2  ascans=(10000, 2050)  void_pix_2d=551  void_voxels_3d=914  in 11.1s
+  ✓ 3  ascans=(10000, 2050)  void_pix_2d=882  void_voxels_3d=4765  in 11.1s
+  ✓ 4  ascans=(10000, 2050)  void_pix_2d=4728  void_voxels_3d=34073  in 10.7s
+  ✓ 5  ascans=(10000, 2050)  void_pix_2d=4211  void_voxels_3d=9808  in 11.0s
+  ✓ 7  ascans=(10000, 2050)  void_pix_2d=938  void_voxels_3d=3437  in 11.8s
+  ✓ 8  ascans=(10000, 2050)  void_pix_2d=3564  void_voxels_3d=18963  in 11.0s
+  ✓ 9  ascans=(10000, 2050)  void_pix_2d=4005  void_voxels_3d=20612  in 11.2s
+  ✓ 6  ascans=(10000, 2050)  void_pix_2d=1097  void_voxels_3d=2582  in 11.0s
+
+Cache written to ascan_cache_atlanta2_bp/
+
+Train: 120000 A-scans  (31280 XY void = 26.1%, 169118 void voxels = 2.8%)
+Val  : 20000 A-scans across ['11', '13']
+Model: AScanCNN (depth-aware), 108,082 params, device=mps
+──────────────────────────────────────────────────────────────────────────────────────────
+  Epoch   1/30 | train loss 0.3647  F1_3D 0.355 | val loss 0.5512  F1_3D 0.012  P 0.073  R 0.007 | 1.0 min
+  Epoch   2/30 | train loss 0.2865  F1_3D 0.430 | val loss 0.4134  F1_3D 0.357  P 0.350  R 0.365 | 1.7 min
+  Epoch   3/30 | train loss 0.2626  F1_3D 0.461 | val loss 0.5193  F1_3D 0.172  P 0.127  R 0.269 | 2.3 min
+  Epoch   4/30 | train loss 0.2436  F1_3D 0.484 | val loss 0.4266  F1_3D 0.328  P 0.234  R 0.548 | 3.0 min
+  Epoch   5/30 | train loss 0.2307  F1_3D 0.503 | val loss 2.4570  F1_3D 0.169  P 0.093  R 0.939 | 3.6 min
+  Epoch   6/30 | train loss 0.2214  F1_3D 0.514 | val loss 0.9769  F1_3D 0.129  P 0.070  R 0.861 | 4.2 min
+  Epoch   7/30 | train loss 0.2151  F1_3D 0.522 | val loss 0.4622  F1_3D 0.267  P 0.162  R 0.767 | 4.8 min
+  Epoch   8/30 | train loss 0.2079  F1_3D 0.531 | val loss 0.8091  F1_3D 0.221  P 0.128  R 0.813 | 5.4 min
+  Epoch   9/30 | train loss 0.2022  F1_3D 0.539 | val loss 1.5184  F1_3D 0.176  P 0.097  R 0.914 | 6.0 min
+  Epoch  10/30 | train loss 0.1986  F1_3D 0.543 | val loss 0.7534  F1_3D 0.374  P 0.330  R 0.431 | 6.6 min
+  Epoch  11/30 | train loss 0.1923  F1_3D 0.552 | val loss 1.3345  F1_3D 0.047  P 0.548  R 0.025 | 11.1 min
+  Epoch  12/30 | train loss 0.1894  F1_3D 0.555 | val loss 0.7804  F1_3D 0.198  P 0.273  R 0.155 | 11.7 min
+  Epoch  13/30 | train loss 0.1848  F1_3D 0.562 | val loss 0.7843  F1_3D 0.293  P 0.394  R 0.234 | 12.3 min
+  Epoch  14/30 | train loss 0.1822  F1_3D 0.565 | val loss 1.2092  F1_3D 0.053  P 0.031  R 0.197 | 13.0 min
+  Epoch  15/30 | train loss 0.1788  F1_3D 0.570 | val loss 1.0067  F1_3D 0.224  P 0.130  R 0.806 | 13.6 min
+  Epoch  16/30 | train loss 0.1759  F1_3D 0.575 | val loss 0.6949  F1_3D 0.298  P 0.430  R 0.228 | 14.2 min
+  Epoch  17/30 | train loss 0.1732  F1_3D 0.579 | val loss 0.8178  F1_3D 0.341  P 0.277  R 0.443 | 14.8 min
+  Epoch  18/30 | train loss 0.1707  F1_3D 0.583 | val loss 0.8208  F1_3D 0.212  P 0.362  R 0.150 | 15.4 min
+  Epoch  19/30 | train loss 0.1677  F1_3D 0.588 | val loss 1.2224  F1_3D 0.040  P 0.083  R 0.027 | 16.0 min
+  Epoch  20/30 | train loss 0.1665  F1_3D 0.589 | val loss 1.0057  F1_3D 0.090  P 0.175  R 0.060 | 16.5 min
+  Epoch  21/30 | train loss 0.1647  F1_3D 0.592 | val loss 0.4738  F1_3D 0.299  P 0.189  R 0.710 | 17.1 min
+  Epoch  22/30 | train loss 0.1624  F1_3D 0.597 | val loss 0.5065  F1_3D 0.288  P 0.193  R 0.569 | 17.7 min
+  Epoch  23/30 | train loss 0.1620  F1_3D 0.596 | val loss 0.6338  F1_3D 0.349  P 0.322  R 0.382 | 18.3 min
+  Epoch  24/30 | train loss 0.1599  F1_3D 0.600 | val loss 0.5987  F1_3D 0.243  P 0.163  R 0.475 | 19.0 min
+  Epoch  25/30 | train loss 0.1589  F1_3D 0.602 | val loss 0.6219  F1_3D 0.235  P 0.159  R 0.452 | 20.0 min
+  Epoch  26/30 | train loss 0.1578  F1_3D 0.604 | val loss 0.5586  F1_3D 0.344  P 0.286  R 0.432 | 20.8 min
+  Epoch  27/30 | train loss 0.1568  F1_3D 0.605 | val loss 0.5659  F1_3D 0.305  P 0.233  R 0.442 | 21.6 min
+  Epoch  28/30 | train loss 0.1566  F1_3D 0.606 | val loss 0.5329  F1_3D 0.321  P 0.237  R 0.498 | 22.4 min
+  Epoch  29/30 | train loss 0.1565  F1_3D 0.607 | val loss 0.5461  F1_3D 0.330  P 0.254  R 0.471 | 23.1 min
+  Epoch  30/30 | train loss 0.1557  F1_3D 0.607 | val loss 0.5435  F1_3D 0.325  P 0.247  R 0.475 | 23.9 min
+──────────────────────────────────────────────────────────────────────────────────────────
+Best val F1_3D: 0.374  →  saved results_v2_atlanta2/ascan_classifier/ascan_cnn_depth_bp.pt
+Saved: results_v2_atlanta2/ascan_classifier/training_curves_depth_bp.png
+Model loaded: epoch 10
+
+── atlanta2 (train/val/no-void) ──
+sample   split   F1_3D   F1_2D  F1_STL   P_3D   R_3D
+     1   TRAIN   0.173   0.435   0.490  0.698  0.099
+     2   TRAIN   0.000   0.091   0.027  0.000  0.000
+     3   TRAIN   0.499   0.371   0.134  0.345  0.904
+     4   TRAIN   0.392   0.641   0.454  0.511  0.318
+     5   TRAIN   0.000   0.352   0.189  0.000  0.000
+     6   TRAIN   0.000   0.000   0.000  0.000  0.000
+     7   TRAIN   0.000   0.025   0.023  0.000  0.000
+     8   TRAIN   0.308   0.696   0.169  0.340  0.281
+     9   TRAIN   0.440   0.748   0.645  0.375  0.532
+    10   TRAIN   0.000   0.000   0.427  0.000  0.000
+    12   TRAIN   0.437   0.612   0.375  0.325  0.666
+    15   TRAIN   0.000   0.380   0.217  0.001  0.000
+    11     VAL   0.359   0.545   0.355  0.325  0.400
+    13     VAL   0.394   0.798   0.460  0.336  0.477
+    14  NOVOID   0.000   0.000   0.000  0.000  0.000
+
+── aggregate ──
+        TRAIN  F1_3D=0.187  F1_2D=0.363  F1_STL=0.263  (n=12)
+          VAL  F1_3D=0.377  F1_2D=0.672  F1_STL=0.407  (n=2)
+
+Saved: results_v2_atlanta2/ascan_classifier/summary_depth_bp.json

@@ -1,0 +1,37 @@
+=== unfiltered viewer (AScanCNN-nofilt + BiLSTM-unfilt) ===
+  1 [TRAIN]: gt_vox=37982 cnn>0.5=69932 bilstm>0.5=59047
+  2 [TRAIN]: gt_vox=914 cnn>0.5=18954 bilstm>0.5=3665
+  3 [TRAIN]: gt_vox=4765 cnn>0.5=27160 bilstm>0.5=10451
+  4 [TRAIN]: gt_vox=34073 cnn>0.5=47339 bilstm>0.5=56468
+  5 [TRAIN]: gt_vox=9808 cnn>0.5=9233 bilstm>0.5=43757
+  6 [TRAIN]: gt_vox=2582 cnn>0.5=5814 bilstm>0.5=8283
+  7 [TRAIN]: gt_vox=3437 cnn>0.5=5673 bilstm>0.5=12226
+  8 [TRAIN]: gt_vox=18963 cnn>0.5=31651 bilstm>0.5=40796
+  9 [TRAIN]: gt_vox=20612 cnn>0.5=46942 bilstm>0.5=47863
+  10 [TRAIN]: gt_vox=0 cnn>0.5=5515 bilstm>0.5=356
+  11 [VAL]: gt_vox=19297 cnn>0.5=38590 bilstm>0.5=42177
+  12 [TRAIN]: gt_vox=16560 cnn>0.5=45637 bilstm>0.5=44484
+  13 [VAL]: gt_vox=13123 cnn>0.5=37625 bilstm>0.5=30053
+  14 [NOVOID]: gt_vox=0 cnn>0.5=29882 bilstm>0.5=4132
+  15 [TRAIN]: gt_vox=19422 cnn>0.5=35580 bilstm>0.5=36562
+
+Saved: runs/unet_bilstm/viewer_ascan_compare.html  (33.6 MB, 15 samples)
+=== band-pass viewer (AScanCNN-bp + BiLSTM-bp) ===
+  1 [TRAIN]: gt_vox=37982 cnn>0.5=5362 bilstm>0.5=69443
+  2 [TRAIN]: gt_vox=914 cnn>0.5=6153 bilstm>0.5=1232
+  3 [TRAIN]: gt_vox=4765 cnn>0.5=12493 bilstm>0.5=9244
+  4 [TRAIN]: gt_vox=34073 cnn>0.5=21221 bilstm>0.5=52823
+  5 [TRAIN]: gt_vox=9808 cnn>0.5=4196 bilstm>0.5=24668
+  6 [TRAIN]: gt_vox=2582 cnn>0.5=1340 bilstm>0.5=2907
+  7 [TRAIN]: gt_vox=3437 cnn>0.5=984 bilstm>0.5=7562
+  8 [TRAIN]: gt_vox=18963 cnn>0.5=15674 bilstm>0.5=38347
+  9 [TRAIN]: gt_vox=20612 cnn>0.5=29215 bilstm>0.5=38728
+  10 [TRAIN]: gt_vox=0 cnn>0.5=3135 bilstm>0.5=282
+  11 [VAL]: gt_vox=19297 cnn>0.5=23774 bilstm>0.5=34068
+  12 [TRAIN]: gt_vox=16560 cnn>0.5=33987 bilstm>0.5=44019
+  13 [VAL]: gt_vox=13123 cnn>0.5=18604 bilstm>0.5=27607
+  14 [NOVOID]: gt_vox=0 cnn>0.5=10450 bilstm>0.5=2311
+  15 [TRAIN]: gt_vox=19422 cnn>0.5=4099 bilstm>0.5=31424
+
+Saved: runs/unet_bilstm/viewer_ascan_compare_bp.html  (28.9 MB, 15 samples)
+DONE both viewers.

@@ -79,9 +79,15 @@ CONTEXT   = 2       # ±2 neighbouring slices as extra input channels
 N_EPOCHS  = 300
 LR        = 1e-3
 
-SLICES_DIR  = Path(_CFG["slices_dir"])
+import os as _os
+# Env overrides let a variant run (e.g. band-pass-filtered slices) train/predict
+# without editing the config or clobbering the baseline:
+#   THZ_SLICES_DIR=slices_v2_atlanta2_bp   read slices from here
+#   THZ_MODEL_NAME=unet_v2_bp.pt           save/load this checkpoint name
+SLICES_DIR  = Path(_os.environ.get("THZ_SLICES_DIR", _CFG["slices_dir"]))
 LABELS_DIR  = Path(_CFG["labels_dir"])
 RESULTS_DIR = Path(_CFG["results_dir"])
+MODEL_NAME  = _os.environ.get("THZ_MODEL_NAME", "unet_v2.pt")
 
 NO_VOID_SAMPLES   = _CFG["no_void_samples"]
 PHYSICAL_NAMES    = _CFG["physical_names"]
@@ -726,8 +732,8 @@ if __name__ == "__main__":
             "config": {"in_channels": in_ch, "base_filters": 32,
                        "context": CONTEXT, "n_slices": N_SLICES},
             "history": history,
-        }, RESULTS_DIR / "unet_v2.pt")
-        print(f"Model saved: {RESULTS_DIR}/unet_v2.pt")
+        }, RESULTS_DIR / MODEL_NAME)
+        print(f"Model saved: {RESULTS_DIR}/{MODEL_NAME}")
 
         visualize_predictions(model,
                               [sd for sd in samples_data if "masks" in sd],
@@ -741,7 +747,7 @@ if __name__ == "__main__":
         assert HAS_TORCH, "PyTorch required"
         matplotlib.use("Agg")
 
-        ckpt  = torch.load(RESULTS_DIR / "unet_v2.pt",
+        ckpt  = torch.load(RESULTS_DIR / MODEL_NAME,
                            map_location=DEVICE, weights_only=False)
         cfg   = ckpt["config"]
         model = UNet(in_channels=cfg["in_channels"],

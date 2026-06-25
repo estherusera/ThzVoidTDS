@@ -1,0 +1,15 @@
+  1D-CNN  unfilt   all F1=0.679(P1.00/R0.58)  VAL F1=0.458  cross F1=0.650
+  1D-CNN  bp       all F1=0.556(P0.96/R0.45)  VAL F1=0.337  cross F1=0.630
+  BiLSTM  unfilt   all F1=0.521(P0.93/R0.40)  VAL F1=0.295  cross F1=0.580
+  BiLSTM  bp       all F1=0.610(P0.93/R0.49)  VAL F1=0.525  cross F1=0.669
+
+========================================================================
+BAND-PASS vs UNFILTERED — unified per-blob F1 (atlanta2 all-void)
+========================================================================
+model            unfilt       bp       Δ   | cross-domain
+1D-CNN            0.679    0.556  -0.122   | cross 0.650→0.630
+U-Net-BiLSTM      0.521    0.610  +0.088   | cross 0.580→0.669
+
+C-scan U-Net (50-slice proxy, separate run): 0.561 → 0.615  (Δ +0.054)
+
+Saved: runs/unet_bilstm/eval_bp_compare.json
